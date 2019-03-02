@@ -434,7 +434,14 @@
             
             }
     
-
+            render() {
+    
+                return (
+                    <div>
+                        {this.getNum1() + this.getNum2()}
+                    </div>
+                );
+            }
         }
         
         ReactDOM.render(
