@@ -348,7 +348,23 @@
 
             const list = arr.map((elem,i) => <li key={i}>{elem}</li>);
     
-  
+                return (
+                    <ul>
+                        {list}
+                    </ul>
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content9')
+        );
+    
+    
+        </script>
+    <hr>
+
+
 
 
 
