@@ -324,6 +324,31 @@
     <h2>На циклы</h2>
 
 
+    <h3>Задание 9. Пусть в методе render есть переменная arr, в которой лежит массив
+        с элементами ['a', 'b', 'c', 'd', 'e']. Сделайте так, чтобы метод render вывел
+        на экран следующее (в каждую лишку запишется один из элементов массива):
+
+        <ul>
+            <li>a</li>
+            <li>b</li>
+            <li>c</li>
+            <li>d</li>
+            <li>e</li>
+        </ul>
+    </h3>
+
+    <div id="content9"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+            render() {
+
+            const arr = ['a', 'b', 'c', 'd', 'e'];
+
+            const list = arr.map((elem,i) => <li key={i}>{elem}</li>);
+    
+  
 
 
 
