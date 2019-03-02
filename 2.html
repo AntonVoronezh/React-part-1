@@ -118,6 +118,32 @@
     </script>
     <hr>
 
+    <h3>Задание 4. Пусть в методе render есть переменная text1 с текстом '<p>текст1</p>'
+        и переменная text2 с текстом '<p>текст2</p>'. С их помощью выведите следующее:
+
+        <div>
+            <p>текст1</p>
+            <p>!!!</p>
+            <p>текст2</p>
+        </div>
+    </h3>
+
+    <div id="content4"></div>
+
+    <script type="text/babel">
+
+    class App extends React.Component {
+        render() {
+
+            const text1 = <p>текст1111</p>;
+
+            const text2 = <p>текст2</p>;
+
+            return (
+                <div>
+                    {text1}
+                    <p>!!!</p>
+
 
 
 
