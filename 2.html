@@ -158,6 +158,29 @@
     <hr>
 
 
+    <h2>На атрибуты</h2>
+
+    <h3>Задание 5. Пусть в методе render есть переменная attr с текстом 'block'.
+        Сделайте так, чтобы метод render вывел на экран следующее (значение атрибута
+        id должно вставится из переменной attr):
+
+        <div id="block">
+            текст
+        </div>
+    </h3>
+
+    <div id="content5"></div>
+
+    <script type="text/babel">
+
+    class App extends React.Component {
+        render() {
+
+            const attr = 'block';
+
+            return (
+                <div id={attr}>
+
 
 
 
