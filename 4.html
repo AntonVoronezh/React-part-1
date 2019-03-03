@@ -194,7 +194,48 @@
     <hr>
 
 
+    <h3>Задание 4. Переделайте предыдущую задачу так, чтобы по заходу на страницу текст
+        кнопки был 'показать', а после нажатия на нее - 'скрыть' (ну и так далее - по
+        каждому нажатию текст должен чередоваться).
+    </h3>
 
+    <div id="content4"></div>
+
+    <script type="text/babel">
+
+            class App extends React.Component {
+    
+                constructor() {
+    
+                    super();
+    
+                    this.state = {name: 'Иван', age: 25, show: false};
+    
+                }
+    
+                showInfo() {
+    
+                    this.setState({show: !this.state.show});                
+    
+                }
+    
+                render() {
+    
+                    var message, btnMsg;
+    
+                        if(this.state.show) {
+    
+                          message = <p>имя: {this.state.name}, возраст: {this.state.age}</p>;
+
+                          btnMsg = 'Скрыть';
+    
+                        } else {
+
+                            btnMsg = 'Показать';
+
+                        }
+    
+ 
 
 
 
