@@ -316,6 +316,36 @@
     <hr>
 
 
+    <h3>Задание 6. Переделайте предыдущую задачу так, чтобы в каждой li кроме элемента
+        массива еще и стоял его порядковый номер в массиве. Вот так:
+
+        <ul>
+            <li>Коля - 1</li>
+            <li>Вася - 2</li>
+            <li>Петя - 3</li>
+        </ul>
+    </h3>
+
+    <div id="content6"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {names: ['Коля', 'Вася', 'Петя']};
+    
+            }
+    
+            // showInfo() {
+    
+            //     this.setState({show: !this.state.show});                
+    
+            // }
+    
 
 
 
