@@ -193,6 +193,35 @@
                         this.showName = this.showName.bind(this);
         
                     }
+        
+                    showName() {
+        
+                        this.setState({name: 'Коля', age: 30});                
+        
+                    }
+        
+                    render() {
+                        return (
+        
+                            <div>
+                                имя: {this.state.name}, возраст: {this.state.age}
+                                <button onClick={this.showName}>
+                                        jjj
+                                </button>
+                            </div>
+        
+                        );
+                    }
+                }
+                
+                ReactDOM.render(
+                    <App />, document.getElementById('content4')
+                );
+        
+        
+                </script>
+        <hr>
+    
 
 
 </body>
