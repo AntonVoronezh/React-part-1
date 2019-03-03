@@ -409,6 +409,35 @@
         }
 
 
+        render() {
+
+            const list = this.state.hrefs.map((elem,i) => 
+
+            <li key={i}><a href={elem.href}>{elem.text}</a></li>
+
+            );
+
+            return (
+
+                <div>
+    
+                <ul>{list}</ul>
+
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content7')
+    );
+
+
+    </script>
+    <hr>
+
+
 
 </body>
 
