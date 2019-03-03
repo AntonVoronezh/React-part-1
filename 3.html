@@ -64,6 +64,35 @@
         </script>
     <hr>
 
+    <h2>На события</h2>
+
+    <h3>Задание 2. Сделайте кнопочку, по нажатию на которую сработает метод showMessage
+        и на экран алертом выведется сообщение с текстом 'hello'.
+    </h3>
+
+    <div id="content2"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+            constructor() {
+
+                super();
+
+                this.showMessage = this.showMessage.bind(this);
+
+            }
+
+            showMessage() {
+
+                console.log('ffffffffff');                
+
+            }
+
+            render() {
+                return (
+
 
 
  
