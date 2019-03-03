@@ -109,7 +109,35 @@
         );
 
 
- 
+        </script>
+    <hr>
+
+    <h3>Задание 3. Дан следующий стейт:
+
+        this.state = {name: 'Иван', age: 25};
+        Сделайте кнопочку, по нажатию на которую сработает метод showName и на
+        экран алертом выведется имя пользователя из стейта
+    </h3>
+
+    <div id="content3"></div>
+
+    <script type="text/babel">
+
+            class App extends React.Component {
+    
+                constructor() {
+    
+                    super();
+
+                    this.state = {name: 'Иван', age: 25};
+    
+                    this.showName = this.showName.bind(this);
+    
+                }
+    
+
+
+
 
 
 </body>
