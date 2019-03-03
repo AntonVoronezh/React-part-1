@@ -137,7 +137,41 @@
         </script>
     <hr>
 
- 
+    <h3>Задание 3.Переделайте предыдущую задачу так, чтобы по первому нажатию на кнопку
+        абзац с нашим текстом показывался, а по второму нажатию - скрывался.
+    </h3>
+
+    <div id="content3"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+            constructor() {
+
+                super();
+
+                this.state = {name: 'Иван', age: 25, show: false};
+
+            }
+
+            showInfo() {
+
+                this.setState({show: !this.state.show});                
+
+            }
+
+            render() {
+
+                var message;
+
+                    if(this.state.show) {
+
+                      message = <p>имя: {this.state.name}, возраст: {this.state.age}</p>;
+
+                    }
+
+
 
 
 
