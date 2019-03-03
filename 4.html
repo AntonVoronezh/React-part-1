@@ -346,6 +346,29 @@
     
             // }
     
+            render() {
+    
+                const list = this.state.names.map((elem,i) => <li key={i}>{elem} - {i + 1}</li>);
+    
+                return (
+    
+                    <div>
+     
+                    <ul>{list}</ul>
+    
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content6')
+        );
+    
+    
+        </script>
+    <hr>
 
 
 
