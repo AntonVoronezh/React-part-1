@@ -85,6 +85,36 @@
         </div>
     </h3>
 
+    <div id="content2"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+            constructor() {
+
+                super();
+
+                this.state = {name: 'Иван', age: 25, show: false};
+
+            }
+
+            showInfo() {
+
+                this.setState({show: true});                
+
+            }
+
+            render() {
+
+                var message;
+
+                    if(this.state.show) {
+
+                      message = <p>имя: {this.state.name}, возраст: {this.state.age}</p>;
+
+                    }
+
 
 
 
