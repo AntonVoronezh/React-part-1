@@ -551,6 +551,100 @@
     <hr>
 
 
+    <h3>Задание 9. Дан массив с именами пользователей. Выведите этот массив в виде списка ul.
+        Также даны инпут и кнопка. Сделайте так, чтобы в инпут можно было ввести еще одно имя,
+        нажать на кнопку - и это имя добавилось в конец списка ul.
+
+    </h3>
+
+    <div id="content9"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {value: '',names: ['aaaa', 'bbbb', 'cccc'], show: false};
+    
+            }
+    
+            handleChange(event) {
+    
+                this.setState({value: event.target.value});
+    
+            }
+    
+            handleSubmit(event) {
+    
+                this.state.names.push(this.state.value);
+    
+                this.setState({names: this.state.names});
+    
+                this.setState({show: true});
+        
+                event.preventDefault();
+    
+            }
+    
+            deleteItem(argNum) {
+    
+                this.state.names.splice(argNum, 1);
+    
+                this.setState({names: this.state.names});
+    
+            }
+    
+            render() {
+    
+                    const list = this.state.names.map((elem,i) => 
+    
+                        <li key={i}>{elem}
+                        
+                            <button onClick={this.deleteItem.bind(this, i)}>
+                                del
+                            </button>
+    
+                        </li>
+                        
+                       
+                    );
+    
+    
+                    if(this.state.show) {
+    
+    
+    
+                    }
+    
+                return (
+    
+                    <div>
+                        <ul>{list}</ul>
+                        <form onSubmit={this.handleSubmit.bind(this)}>
+                            <input 
+                                value={this.state.value} 
+                                onChange={this.handleChange.bind(this)}
+                            />
+                            <input type="submit" />
+                        </form>
+    
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content9')
+        );
+    
+    
+        </script>
+    <hr>
+
 
 
 
