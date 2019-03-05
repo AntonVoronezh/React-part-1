@@ -63,6 +63,31 @@
         </script>
     <hr>
 
+    <h3>Задание 2. Переделайте предыдущую задачу так, чтобы под списком появилась кнопочка,
+        по нажатию на которую в конец списка будет добавляться элемент с текстом 'пункт'.
+    </h3>
+
+    <div id="content2"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+        constructor() {
+
+            super();
+
+            this.state = {names: ['Коля', 'Вася', 'Петя', 'Иван', 'Дима']};
+
+        }
+
+        addText(){
+
+            this.state.names.push('пункт');
+
+            this.setState({names:this.state.names});
+
+        }
 
 
 
