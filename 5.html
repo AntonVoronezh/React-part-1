@@ -33,6 +33,35 @@
 
             constructor() {
 
+                super();
+
+                this.state = {names: ['Коля', 'Вася', 'Петя', 'Иван', 'Дима']};
+
+            }
+
+            render() {
+
+                const list = this.state.names.map((elem, i) => 
+                    <li key={i}>{elem}</li>
+                );
+
+                return (
+
+                   <div>
+                      {list}
+                    </div>
+
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content1')
+        );
+
+
+        </script>
+    <hr>
 
 
 
