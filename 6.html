@@ -161,6 +161,59 @@
     </script>
     <hr>
 
+    <h3>Задание 4. Дан инпут и 3 абзаца. В инпут вводится ФИО пользователя через пробел.
+        Сделайте так, чтобы при наборе текста в первом абзаце появилась фамилия пользователя,
+        во втором - имя, а в третьем - отчество.
+    </h3>
+
+    <div id="content4"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {family:'', name: '', lastname:''};
+    
+            }
+    
+            handleChange(event) {
+
+                const [family, name, lastname] = event.target.value.split(' ');
+    
+                this.setState({family, name, lastname});
+    
+            }
+    
+            render() {
+                return (
+    
+                    <div>
+                        <p>{this.state.family}</p>
+                        <p>{this.state.name}</p>
+                        <p>{this.state.lastname}</p>
+                        <input 
+                        value={this.state.value} 
+                        onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content4')
+        );
+    
+    
+        </script>
+    <hr>
+
+    <h2>На submit</h2>
 
 
 
