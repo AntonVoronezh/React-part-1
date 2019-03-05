@@ -89,6 +89,33 @@
 
         }
 
+        render() {
+
+            const list = this.state.names.map((elem, i) => 
+                <li key={i}>{elem}</li>
+            );
+
+            return (
+
+                <div>
+                    <ul>
+                        {list}
+                    </ul>
+                    <button onClick={this.addText.bind(this)}>ffffff</button>
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content2')
+    );
+
+
+    </script>
+    <hr>
+
 
 
 </body>
