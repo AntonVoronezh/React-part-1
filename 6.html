@@ -15,6 +15,59 @@
 
 <body>
 
+    <h2>
+        Задачи на работу с формами в React
+    </h2>
+
+    <h2>На инпуты</h2>
+
+    <h3>Задание 1. Дан инпут и абзац. Сделайте так, чтобы при наборе текста в инпуте
+        он автоматически появлялся в этом абзаце.
+    </h3>
+
+    <div id="content1"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+        constructor() {
+
+            super();
+
+            this.state = {value: ''};
+
+        }
+
+        handleChange(event) {
+
+            this.setState({value: event.target.value});
+
+        }
+
+        render() {
+            return (
+
+                <div>
+                    <p>{this.state.value}</p>
+                    <input 
+                    value={this.state.value} 
+                    onChange={this.handleChange.bind(this)}
+                    />
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content1')
+    );
+
+
+    </script>
+    <hr>
+
 
 
 
