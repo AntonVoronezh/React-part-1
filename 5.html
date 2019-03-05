@@ -116,6 +116,60 @@
     </script>
     <hr>
 
+    <h3>Задание 3. Переделайте предыдущую задачу так, чтобы появилась кнопочка,
+        по нажатию на которую каждый раз будет исчезать последняя li из списка
+        (каждый раз по одной, пока li в списке не закончатся).
+    </h3>
+
+    <div id="content3"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+        
+            constructor() {
+    
+                super();
+    
+                this.state = {names: ['Коля', 'Вася', 'Петя', 'Иван', 'Дима']};
+    
+            }
+    
+            deleteLast(){
+    
+                this.state.names.pop();
+    
+                this.setState({names:this.state.names});
+    
+            }
+    
+            render() {
+    
+                const list = this.state.names.map((elem, i) => 
+                    <li key={i}>{elem}</li>
+                );
+    
+                return (
+    
+                    <div>
+                        <ul>
+                            {list}
+                        </ul>
+                        <button onClick={this.deleteLast.bind(this)}>ffffff</button>
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content3')
+        );
+    
+    
+        </script>
+    <hr>
+
 
 
 </body>
