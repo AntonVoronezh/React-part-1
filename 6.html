@@ -114,6 +114,52 @@
         </script>
     <hr>
 
+    <h3>Задание 3. Дан инпут и абзац. В инпут вводится возраст пользователя.
+        Сделайте так, чтобы при наборе текста в абзаце автоматически появлялся год рождения пользователя.
+    </h3>
+
+    <div id="content3"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+        constructor() {
+
+            super();
+
+            this.state = {value: 0};
+
+        }
+
+        handleChange(event) {
+
+            this.setState({value: Number(event.target.value)});
+
+        }
+
+        render() {
+            return (
+
+                <div>
+                    <p>{2019 - this.state.value}</p>
+                    <input 
+                    value={this.state.value} 
+                    onChange={this.handleChange.bind(this)}
+                    />
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content3')
+    );
+
+
+    </script>
+    <hr>
 
 
 
