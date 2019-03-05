@@ -285,6 +285,96 @@
 
 
 
+    <h3>Задание 6. Даны два инпута и кнопка. В инпуты вводятся числа. Сделайте так,
+        чтобы по нажатию на кнопку под инпутами в какой-нибудь абзац вывелась сумма этих чисел.
+    </h3>
+
+    <div id="content6"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {value: '', value2: '', show: false, args:[]};
+    
+            }
+    
+            handleChange(event) {
+    
+                this.setState({value: event.target.value});
+
+                this.state.args.push(Number(event.target.value));
+
+                this.setState({args: this.state.args});
+    
+            }
+
+            handleChange2(event) {
+    
+                this.setState({value2: event.target.value});
+
+                this.state.args.push(Number(event.target.value));
+
+                this.setState({args: this.state.args});
+
+            }
+    
+            handleSubmit(event) {
+
+                console.log(this.state.args);
+                    
+                this.setState({show: true});
+    
+                event.preventDefault();
+                
+            }
+    
+
+            render() {
+    
+                let info;
+    
+                if(this.state.show) {
+
+                    const result = this.state.args.reduce((a, b) => a + b)
+    
+                    info = <p>{result}</p>
+    
+                }
+    
+                return (
+    
+                    <div>
+                        {info}
+                        <form onSubmit={this.handleSubmit.bind(this)}>
+                            <input 
+                            value={this.state.value} 
+                            onChange={this.handleChange.bind(this)}
+                            />
+                            <input 
+                            value={this.state.value2} 
+                            onChange={this.handleChange2.bind(this)}
+                            />
+                            <input type="submit" />
+                        </form>
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content6')
+        );
+    
+    
+        </script>
+    <hr>
+
 
 
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
