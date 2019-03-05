@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://npmcdn.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://npmcdn.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
+</head>
+
+<body>
+
+    <h2>
+        Задачи на работу с формами в React
+    </h2>
+
+    <h2>На инпуты</h2>
+
+    <h3>Задание 1. Дан инпут и абзац. Сделайте так, чтобы при наборе текста в инпуте
+        он автоматически появлялся в этом абзаце.
+    </h3>
+
+    <div id="content1"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+        constructor() {
+
+            super();
+
+            this.state = {value: ''};
+
+        }
+
+        handleChange(event) {
+
+            this.setState({value: event.target.value});
+
+        }
+
+        render() {
+            return (
+
+                <div>
+                    <p>{this.state.value}</p>
+                    <input 
+                    value={this.state.value} 
+                    onChange={this.handleChange.bind(this)}
+                    />
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content1')
+    );
+
+
+    </script>
+    <hr>
+
+    <h3>Задание 2. Модифицируйте предыдущую задачу так, чтобы текст в абзац выводился в верхнем регистре.
+    </h3>
+
+    <div id="content2"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {value: ''};
+    
+            }
+    
+            handleChange(event) {
+    
+                this.setState({value: event.target.value});
+    
+            }
+    
+            render() {
+                return (
+    
+                    <div>
+                        <p>{this.state.value.toUpperCase()}</p>
+                        <input 
+                        value={this.state.value} 
+                        onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content2')
+        );
+    
+    
+        </script>
+    <hr>
+
+    <h3>Задание 3. Дан инпут и абзац. В инпут вводится возраст пользователя.
+        Сделайте так, чтобы при наборе текста в абзаце автоматически появлялся год рождения пользователя.
+    </h3>
+
+    <div id="content3"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+        constructor() {
+
+            super();
+
+            this.state = {value: 0};
+
+        }
+
+        handleChange(event) {
+
+            this.setState({value: Number(event.target.value)});
+
+        }
+
+        render() {
+            return (
+
+                <div>
+                    <p>{2019 - this.state.value}</p>
+                    <input 
+                    value={this.state.value} 
+                    onChange={this.handleChange.bind(this)}
+                    />
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content3')
+    );
+
+
+    </script>
+    <hr>
+
+    <h3>Задание 4. Дан инпут и 3 абзаца. В инпут вводится ФИО пользователя через пробел.
+        Сделайте так, чтобы при наборе текста в первом абзаце появилась фамилия пользователя,
+        во втором - имя, а в третьем - отчество.
+    </h3>
+
+    <div id="content4"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {family:'', name: '', lastname:''};
+    
+            }
+    
+            handleChange(event) {
+
+                const [family, name, lastname] = event.target.value.split(' ');
+    
+                this.setState({family, name, lastname});
+    
+            }
+    
+            render() {
+                return (
+    
+                    <div>
+                        <p>{this.state.family}</p>
+                        <p>{this.state.name}</p>
+                        <p>{this.state.lastname}</p>
+                        <input 
+                        value={this.state.value} 
+                        onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content4')
+        );
+    
+    
+        </script>
+    <hr>
+
+    <h2>На submit</h2>
+
+
+    <h3>Задание 5. Дан инпут и кнопка submit. В инпут вводится текст. Сделайте так, чтобы по
+        нажатию на кнопку этот текст вывелся в какой-нибудь абзац.
+    </h3>
+
+    <div id="content5"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+        constructor() {
+
+            super();
+
+            this.state = {value: '', show: false};
+
+        }
+
+        handleChange(event) {
+
+            this.setState({value: event.target.value});
+
+        }
+
+        handleSubmit(event) {
+
+            this.setState({show: true});
+
+            event.preventDefault();
+            
+        }
+
+        render() {
+
+            let info;
+
+            if(this.state.show) {
+
+                info = <p>{this.state.value}</p>
+
+            }
+
+            return (
+
+                <div>
+                    {info}
+                    <form onSubmit={this.handleSubmit.bind(this)}>
+                        <input 
+                        value={this.state.value} 
+                        onChange={this.handleChange.bind(this)}
+                        />
+                        <input type="submit" />
+                    </form>
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content5')
+    );
+
+
+    </script>
+    <hr>
+
+
+
+    <h3>Задание 6. Даны два инпута и кнопка. В инпуты вводятся числа. Сделайте так,
+        чтобы по нажатию на кнопку под инпутами в какой-нибудь абзац вывелась сумма этих чисел.
+    </h3>
+
+    <div id="content6"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {value: '', value2: '', show: false, args:[]};
+    
+            }
+    
+            handleChange(event) {
+    
+                this.setState({value: event.target.value});
+
+                this.state.args.push(Number(event.target.value));
+
+                this.setState({args: this.state.args});
+    
+            }
+
+            handleChange2(event) {
+    
+                this.setState({value2: event.target.value});
+
+                this.state.args.push(Number(event.target.value));
+
+                this.setState({args: this.state.args});
+
+            }
+    
+            handleSubmit(event) {
+
+                console.log(this.state.args);
+                    
+                this.setState({show: true});
+    
+                event.preventDefault();
+                
+            }
+    
+
+            render() {
+    
+                let info;
+    
+                if(this.state.show) {
+
+                    const result = this.state.args.reduce((a, b) => a + b)
+    
+                    info = <p>{result}</p>
+    
+                }
+    
+                return (
+    
+                    <div>
+                        {info}
+                        <form onSubmit={this.handleSubmit.bind(this)}>
+                            <input 
+                            value={this.state.value} 
+                            onChange={this.handleChange.bind(this)}
+                            />
+                            <input 
+                            value={this.state.value2} 
+                            onChange={this.handleChange2.bind(this)}
+                            />
+                            <input type="submit" />
+                        </form>
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content6')
+        );
+    
+    
+        </script>
+    <hr>
+
+
+
+    <h3>Задание 7. Даны 3 инпута и кнопка. В инпуты вводится имя, фамилия и отчество.
+        Сделайте так, чтобы по нажатию на кнопку под инпутами в какой-нибудь абзац вывелось
+        полное ФИО пользователя.
+    </h3>
+
+    <div id="content7"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {value: '', value2: '', value3: '', show: false};
+    
+            }
+    
+            handleChange(event) {
+    
+                this.setState({value: event.target.value});
+
+            }
+
+            handleChange2(event) {
+    
+                this.setState({value2: event.target.value});
+
+            }
+
+            handleChange3(event) {
+    
+                this.setState({value3: event.target.value});
+
+            }
+    
+            handleSubmit(event) {
+
+                console.log(this.state.args);
+                    
+                this.setState({show: true});
+    
+                event.preventDefault();
+                
+            }
+    
+
+            render() {
+    
+                let info;
+    
+                if(this.state.show) {
+
+                    info = <p>{this.state.value} {this.state.value2} {this.state.value3}</p>
+    
+                }
+    
+                return (
+    
+                    <div>
+                        {info}
+                        <form onSubmit={this.handleSubmit.bind(this)}>
+                            <input 
+                            value={this.state.value} 
+                            onChange={this.handleChange.bind(this)}
+                            />
+                            <input 
+                            value={this.state.value2} 
+                            onChange={this.handleChange2.bind(this)}
+                            />
+                            <input 
+                            value={this.state.value3} 
+                            onChange={this.handleChange3.bind(this)}
+                            />
+                            <input type="submit" />
+                        </form>
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content7')
+        );
+    
+    
+        </script>
+    <hr>
+
+
+    <h2>На формы + массивы</h2>
+
+    <h3>Задание 8. Дан массив с именами пользователей. Выведите этот массив в виде списка ul.
+        Также даны инпут и кнопка. Сделайте так, чтобы в инпут можно было ввести еще одно имя,
+        нажать на кнопку - и это имя добавилось в конец списка ul.
+
+    </h3>
+
+    <div id="content8"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+        constructor() {
+
+            super();
+
+            this.state = {value: '',names: ['aaaa', 'bbbb', 'cccc'], show: false};
+
+        }
+
+        handleChange(event) {
+
+            this.setState({value: event.target.value});
+
+        }
+
+        handleSubmit(event) {
+
+            this.state.names.push(this.state.value);
+
+            this.setState({names: this.state.names});
+
+            this.setState({show: true});
+    
+            event.preventDefault();
+
+        }
+
+        render() {
+
+                const list = this.state.names.map((elem,i) => 
+
+                    <li key={i}>{elem}</li>
+
+                );
+
+
+                if(this.state.show) {
+
+
+
+                }
+
+            return (
+
+                <div>
+                    <ul>{list}</ul>
+                    <form onSubmit={this.handleSubmit.bind(this)}>
+                        <input 
+                            value={this.state.value} 
+                            onChange={this.handleChange.bind(this)}
+                        />
+                        <input type="submit" />
+                    </form>
+
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content8')
+    );
+
+
+    </script>
+    <hr>
+
+
+    <h3>Задание 9. Дан массив с именами пользователей. Выведите этот массив в виде списка ul.
+        Также даны инпут и кнопка. Сделайте так, чтобы в инпут можно было ввести еще одно имя,
+        нажать на кнопку - и это имя добавилось в конец списка ul.
+
+    </h3>
+
+    <div id="content9"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {value: '',names: ['aaaa', 'bbbb', 'cccc'], show: false};
+    
+            }
+    
+            handleChange(event) {
+    
+                this.setState({value: event.target.value});
+    
+            }
+    
+            handleSubmit(event) {
+    
+                this.state.names.push(this.state.value);
+    
+                this.setState({names: this.state.names});
+    
+                this.setState({show: true});
+        
+                event.preventDefault();
+    
+            }
+    
+            deleteItem(argNum) {
+    
+                this.state.names.splice(argNum, 1);
+    
+                this.setState({names: this.state.names});
+    
+            }
+    
+            render() {
+    
+                    const list = this.state.names.map((elem,i) => 
+    
+                        <li key={i}>{elem}
+                        
+                            <button onClick={this.deleteItem.bind(this, i)}>
+                                del
+                            </button>
+    
+                        </li>
+                        
+                       
+                    );
+    
+    
+                    if(this.state.show) {
+    
+    
+    
+                    }
+    
+                return (
+    
+                    <div>
+                        <ul>{list}</ul>
+                        <form onSubmit={this.handleSubmit.bind(this)}>
+                            <input 
+                                value={this.state.value} 
+                                onChange={this.handleChange.bind(this)}
+                            />
+                            <input type="submit" />
+                        </form>
+    
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content9')
+        );
+    
+    
+        </script>
+    <hr>
+
+
+    <h3>Задание 10. Дан следующий стейт:
+
+        this.state = {
+        hrefs: [
+        {href: '1.html', text: 'ссылка 1'},
+        {href: '2.html', text: 'ссылка 2'},
+        {href: '3.html', text: 'ссылка 3'},
+        ]
+        };
+        Выведите на экран следующее:
+
+        <ul>
+            <li><a href="1.html">ссылка 1</a></li>
+            <li><a href="2.html">ссылка 2</a></li>
+            <li><a href="3.html">ссылка 3</a></li>
+        </ul>
+        Сделайте 2 инпута и кнопку, по нажатию на которую в список добавится новый li,
+        причем href возьмется из первого инпута, а текст ссылки - из второго.
+
+    </h3>
+
+    <div id="content10"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+        
+                constructor() {
+        
+                    super();
+        
+                    this.state = {
+                        value1: '',
+                        value2: '',
+                        hrefs: [
+                        {href: '1.html', text: 'ссылка 1'},
+                        {href: '2.html', text: 'ссылка 2'},
+                        {href: '3.html', text: 'ссылка 3'},
+                    ],
+                        
+                        show: false};
+        
+                }
+        
+                handleChange1(event) {
+        
+                    this.setState({value1: event.target.value});
+        
+                }
+
+                handleChange2(event) {
+        
+                    this.setState({value2: event.target.value});
+
+                }
+        
+                handleSubmit(event) {
+
+                    const obj = {
+                        href: this.state.value1, 
+                        text: this.state.value2
+                    };
+        
+                    this.state.hrefs.push(obj);
+        
+                    this.setState({hrefs: this.state.hrefs});
+        
+                    // this.setState({show: true});
+            
+                    event.preventDefault();
+        
+                }
+        
+        
+                render() {
+        
+                        const list = this.state.hrefs.map((elem,i) => 
+        
+                            <li key={i} >
+                                <a href={elem.href}>
+                                    {elem.text}    
+                                </a>                       
+                            </li>
+                           
+                        );
+        
+        
+                    return (
+        
+                        <div>
+                            <ul>{list}</ul>
+                            <form onSubmit={this.handleSubmit.bind(this)}>
+                                <input 
+                                    value={this.state.value1} 
+                                    onChange={this.handleChange1.bind(this)}
+                                />
+                                <input 
+                                    value={this.state.value2} 
+                                    onChange={this.handleChange2.bind(this)}
+                                />
+                                <input type="submit" />
+                            </form>
+        
+                        </div>
+        
+                    );
+                }
+            }
+            
+            ReactDOM.render(
+                <App />, document.getElementById('content10')
+            );
+        
+        
+            </script>
+    <hr>
+
+
+    <h3>Задание 11. Дан массив. Выведите этот массив в виде списка ul.
+        Также даны инпут и кнопка. Сделайте так, чтобы в инпут можно было ввести число,
+        нажать на кнопку - и из списка ul удалился элемент с введенным в инпут номером.
+
+
+
+    </h3>
+
+    <div id="content11"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                    this.state = {
+                        value: '',
+                        arr: [0,1,2,3,4,5,6,7,8]    
+                    }
+
+            }
+    
+            handleChange(event) {
+    
+                this.setState({value: Number(event.target.value)});
+    
+            }
+
+            handleSubmit(event) {
+
+                this.state.arr.splice(this.state.value, 1);
+    
+                this.setState({arr: this.state.arr});
+    
+                event.preventDefault();
+    
+            }
+    
+    
+            render() {
+    
+                    const list = this.state.arr.map((elem,i) => 
+    
+                        <li key={i} >
+                                {elem}    
+                        </li>
+                        
+                    );
+    
+    
+                return (
+    
+                    <div>
+                        <ul>{list}</ul>
+                        <form onSubmit={this.handleSubmit.bind(this)}>
+                            <input 
+                                value={this.state.value} 
+                                onChange={this.handleChange.bind(this)}
+                            />
+                            <input type="submit" />
+                        </form>
+    
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content11')
+        );
+    
+    
+        </script>
+    <hr>
+
+
+    <h3>Задание 12. Дан следующий массив:
+
+            this.state = {
+                users: [
+                    {name: 'Коля', age: 30},
+                    {name: 'Вася', age: 40},
+                    {name: 'Петя', age: 50},
+                ]
+            };
+            Выведите его на экран в виде таблицы:
+            
+            <table>
+                <tr>
+                    <td>Коля</td><td>30</td>
+                </tr>
+                <tr>
+                    <td>Коля</td><td>40</td>
+                </tr>
+                <tr>
+                    <td>Коля</td><td>50</td>
+                </tr>
+            </table>
+            Сделайте 2 инпута и кнопку, по нажатию на которую в список добавится новая tr с именем и возрастом.
+        </h3>
+    
+        <div id="content12"></div>
+    
+        <script type="text/babel">
+    
+            class App extends React.Component {
+        
+                constructor() {
+        
+                    super();
+        
+                        this.state = {
+                            value1: '',
+                            value2: '',
+                            users: [
+                                {name: 'Коля', age: 30},
+                                {name: 'Вася', age: 40},
+                                {name: 'Петя', age: 50},
+                            ]  
+                        }
+    
+                }
+        
+                handleChange1(event) {
+        
+                    this.setState({value1: event.target.value});
+        
+                }
+        
+                handleChange2(event) {
+        
+                    this.setState({value2: event.target.value});
+        
+                }
+    
+                handleSubmit(event) {
+
+                    event.preventDefault();
+
+                    this.state.users.push({name: this.state.value1, age: this.state.value2})
+        
+                    this.setState({users: this.state.users});
+        
+                    
+        
+                }
+        
+        
+                render() {
+        
+                        const list = this.state.users.map((elem,i) => 
+        
+                            <tr key={i}>
+                                <td>{elem.name}</td>
+                                <td>{elem.age}</td>                                        
+                            </tr>
+                            
+                        );
+        
+        
+                    return (
+        
+                        <div>
+                            <table><tbody>{list}</tbody></table>
+                            <form onSubmit={this.handleSubmit.bind(this)}>
+                                <input 
+                                    value={this.state.value1} 
+                                    onChange={this.handleChange1.bind(this)}
+                                />
+                                <input 
+                                    value={this.state.value2} 
+                                    onChange={this.handleChange2.bind(this)}
+                                />
+                                <input type="submit" />
+                            </form>
+        
+                        </div>
+        
+                    );
+                }
+            }
+            
+            ReactDOM.render(
+                <App />, document.getElementById('content12')
+            );
+        
+        
+            </script>
+        <hr>
+    
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+
+</html>
