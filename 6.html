@@ -216,6 +216,75 @@
     <h2>На submit</h2>
 
 
+    <h3>Задание 5. Дан инпут и кнопка submit. В инпут вводится текст. Сделайте так, чтобы по
+        нажатию на кнопку этот текст вывелся в какой-нибудь абзац.
+    </h3>
+
+    <div id="content5"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+        constructor() {
+
+            super();
+
+            this.state = {value: '', show: false};
+
+        }
+
+        handleChange(event) {
+
+            this.setState({value: event.target.value});
+
+        }
+
+        handleSubmit(event) {
+
+            this.setState({show: true});
+
+            event.preventDefault();
+            
+        }
+
+        render() {
+
+            let info;
+
+            if(this.state.show) {
+
+                info = <p>{this.state.value}</p>
+
+            }
+
+            return (
+
+                <div>
+                    {info}
+                    <form onSubmit={this.handleSubmit.bind(this)}>
+                        <input 
+                        value={this.state.value} 
+                        onChange={this.handleChange.bind(this)}
+                        />
+                        <input type="submit" />
+                    </form>
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content5')
+    );
+
+
+    </script>
+    <hr>
+
+
+
 
 
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
