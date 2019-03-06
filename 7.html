@@ -327,7 +327,49 @@
         
                     this.setState({option: event.target.value});
         
+                }
+        
+                render() {
+    
+                    return (
+        
+                        <div>
+                            <p>{this.state.option}</p>
 
+                            <input 
+                            
+                                name="one"
+                                type="radio"
+                                value="option1"
+                                checked={this.state.option === 'option1'}
+                                onChange={this.handleRadioChange.bind(this)}
+                            
+                            />
+                            <input 
+                            
+                                name="one"
+                                type="radio"
+                                value="option2"
+                                checked={this.state.option === 'option2'}
+                                onChange={this.handleRadioChange.bind(this)}
+                            
+                            />
+                            <input 
+                            
+                                name="one"
+                                type="radio"
+                                value="option3"
+                                checked={this.state.option === 'option3'}
+                                onChange={this.handleRadioChange.bind(this)}
+                            
+                            />
+
+                        </div>
+        
+                    );
+                }
+            }
+            
             ReactDOM.render(
                 <App />, document.getElementById('content6')
             );
