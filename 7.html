@@ -47,7 +47,18 @@
 
         }
 
-;
+        render() {
+            return (
+
+                <div>
+                    <p>{this.state.value}</p>
+                    <textarea 
+                    value={this.state.value} 
+                    onChange={this.handleChange.bind(this)}
+                    />
+                </div>
+
+            );
         }
     }
     
