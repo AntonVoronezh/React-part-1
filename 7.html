@@ -419,7 +419,38 @@
                 
             }
     
+            render() {
 
+                const result = this.state.texts.map((elem, i) => 
+                
+                    <p key={i}>{elem}</p>
+                
+                );
+
+                return (
+    
+                    <div>
+                        <div>{result}</div>
+
+                        <form onSubmit={this.handleSubmit.bind(this)}>
+
+                            <textarea 
+
+                                value={this.state.value}
+                                onChange={this.handleAreaChange.bind(this)}
+                            
+                            />
+
+                            <input type="submit" />
+
+                        </form>
+
+                    </div>
+    
+                );
+            }
+        }
+        
                 ReactDOM.render(
                     <App />, document.getElementById('content7')
                 );
