@@ -71,6 +71,44 @@
     <hr>
 
 
+    <h2>На чекбоксы</h2>
+
+    <h3>Задание 2. Дан чекбокс и абзац. Сделайте так, чтобы состояние чекбокса выводилось в этот абзац.
+
+
+    </h3>
+
+    <div id="content2"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {checked: true};
+    
+            }
+    
+            handleCheckboxChange(event) {
+    
+                this.setState({checked: !this.state.checked});
+    
+            }
+    
+  
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content2')
+        );
+    
+    
+        </script>
+    <hr>
+
+
 
 
 
