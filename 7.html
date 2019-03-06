@@ -243,6 +243,38 @@
 
 
 
+    <h3>Задание 5. Модифицируйте предыдущую задачу так, чтобы список городов хранился в массиве из стейта.
+
+
+    </h3>
+
+    <div id="content5"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {value: 0, arr: ['Москва', 'Воронеж', 'Питер', 'Тула']};
+    
+            }
+    
+            handleCheckboxChange(event) {
+    
+                this.setState({value: event.target.value});
+    
+            }
+  
+        ReactDOM.render(
+            <App />, document.getElementById('content5')
+        );
+    
+    
+        </script>
+    <hr>
 
 
 
