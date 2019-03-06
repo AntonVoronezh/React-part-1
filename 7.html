@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://npmcdn.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://npmcdn.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
+</head>
+
+<body>
+
+    <h2>
+        Задачи на продвинутую работу с формами в React
+    </h2>
+
+    <h2>На текстареа</h2>
+
+    <h3>Задание 1. Дан текстареа и абзац. Сделайте так, чтобы при наборе
+        текста в текстареа он автоматически появлялся в этом абзаце.
+
+
+    </h3>
+
+    <div id="content1"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+        constructor() {
+
+            super();
+
+            this.state = {value: ''};
+
+        }
+
+        handleChange(event) {
+
+            this.setState({value: event.target.value});
+
+        }
+
+        render() {
+            return (
+
+                <div>
+                    <p>{this.state.value}</p>
+                    <textarea 
+                    value={this.state.value} 
+                    onChange={this.handleChange.bind(this)}
+                    />
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content1')
+    );
+
+
+    </script>
+    <hr>
+
+
+    <h2>На чекбоксы</h2>
+
+    <h3>Задание 2. Дан чекбокс и абзац. Сделайте так, чтобы состояние чекбокса выводилось в этот абзац.
+
+
+    </h3>
+
+    <div id="content2"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {checked: true};
+    
+            }
+    
+            handleCheckboxChange(event) {
+    
+                this.setState({checked: !this.state.checked});
+    
+            }
+    
+            render() {
+                return (
+    
+                    <div>
+                        <p>{this.state.checked ? '+' : '-'}</p>
+                        <input 
+                            type="checkbox"
+                            checked={this.state.checked} 
+                            onChange={this.handleCheckboxChange.bind(this)}
+                        />
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content2')
+        );
+    
+    
+        </script>
+    <hr>
+
+
+    <h3>Задание 3. Дан чекбокс и какой-то абзац с текстом.
+        Сделайте так, чтобы если чекбокс отмечен - абзац был виден на экране,
+        а если не отмечен - не видим.
+
+
+    </h3>
+
+    <div id="content3"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+        
+                constructor() {
+        
+                    super();
+        
+                    this.state = {checked: true};
+        
+                }
+        
+                handleCheckboxChange(event) {
+        
+                    this.setState({checked: !this.state.checked});
+        
+                }
+        
+                render() {
+                    let text; 
+
+                    if(this.state.checked) {
+                        text = `Дан чекбокс и какой-то абзац с текстом. 
+                                  Сделайте так, чтобы если чекбокс отмечен - абзац был виден на экране,
+                                  а если не отмечен - не видим.`;
+
+                    }
+
+                    return (
+                        
+                        <div>
+                            <p>{text}</p>
+                            <input 
+                                type="checkbox"
+                                checked={this.state.checked} 
+                                onChange={this.handleCheckboxChange.bind(this)}
+                            />
+                        </div>
+        
+                    );
+                }
+            }
+            
+            ReactDOM.render(
+                <App />, document.getElementById('content3')
+            );
+        
+        
+            </script>
+    <hr>
+
+    <h2>На селекты</h2>
+
+    <h3>Задание 4. Дан селект со списком городов (просто селект в HTML коде,
+        option не из массива). Дан также абзац, в который выводится выбранный город.
+        Сделайте так, чтобы при смене города в селекте в абзаце он также менялся.
+
+
+    </h3>
+
+    <div id="content4"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {value:''};
+    
+            }
+    
+            handleCheckboxChange(event) {
+    
+                this.setState({value: event.target.value});
+    
+            }
+    
+            render() {
+                return (
+    
+                    <div>
+                        <p>{this.state.value}</p>
+                        <select 
+                            type="checkbox"
+                            checked={this.state.checked} 
+                            onChange={this.handleCheckboxChange.bind(this)}
+                        >
+                            <option>Москва</option>
+                            <option>Воронеж</option>
+                            <option>Питер</option>
+                            <option>Тула</option>
+                        </select> 
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content4')
+        );
+    
+    
+        </script>
+    <hr>
+
+
+
+    <h3>Задание 5. Модифицируйте предыдущую задачу так, чтобы список городов хранился в массиве из стейта.
+
+
+    </h3>
+
+    <div id="content5"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {value: 0, arr: ['Москва', 'Воронеж', 'Питер', 'Тула']};
+    
+            }
+    
+            handleCheckboxChange(event) {
+    
+                this.setState({value: event.target.value});
+    
+            }
+    
+            render() {
+
+                const options = this.state.arr.map((elem, i) => 
+                
+                    <option key={i} value={i}>{elem}</option>
+
+                );
+
+                return (
+    
+                    <div>
+                        <p>{this.state.arr[this.state.value]}</p>
+                        <select 
+                            value={this.state.value} 
+                            onChange={this.handleCheckboxChange.bind(this)}
+                        >
+                            {options}
+                        </select> 
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content5')
+        );
+    
+    
+        </script>
+    <hr>
+
+
+    <h2>На радио</h2>
+
+    <h3>Задание 6. Даны 3 радиокнопочки со значениями 1, 2 и 3. Дан абзац.
+        Сделайте так, чтобы значение выбранной радиокнопочки выводилось в этот абзац.
+
+
+    </h3>
+
+    <div id="content6"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+        
+                constructor() {
+        
+                    super();
+        
+                    this.state = {option: 'option1'};
+        
+                }
+        
+                handleRadioChange(event) {
+        
+                    this.setState({option: event.target.value});
+        
+                }
+        
+                render() {
+    
+                    return (
+        
+                        <div>
+                            <p>{this.state.option}</p>
+
+                            <input 
+                            
+                                name="one"
+                                type="radio"
+                                value="option1"
+                                checked={this.state.option === 'option1'}
+                                onChange={this.handleRadioChange.bind(this)}
+                            
+                            />
+                            <input 
+                            
+                                name="one"
+                                type="radio"
+                                value="option2"
+                                checked={this.state.option === 'option2'}
+                                onChange={this.handleRadioChange.bind(this)}
+                            
+                            />
+                            <input 
+                            
+                                name="one"
+                                type="radio"
+                                value="option3"
+                                checked={this.state.option === 'option3'}
+                                onChange={this.handleRadioChange.bind(this)}
+                            
+                            />
+
+                        </div>
+        
+                    );
+                }
+            }
+            
+            ReactDOM.render(
+                <App />, document.getElementById('content6')
+            );
+        
+        
+            </script>
+    <hr>
+
+
+    <h2>Практика</h2>
+
+    <h3>Задание 7. Дан текстареа и кнопка. Дан также стейт texts с массивом текстов.
+        Изначально этот массив пустой, но каждый раз по нажатию на кнопку в конец этого
+        массива должно записаться текущее содержимое текстареа. Выведите содержимое
+        массива this.state.texts так, чтобы каждый элемент массива выводился в новом абзаце.
+
+
+    </h3>
+
+    <div id="content7"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+            
+            constructor() {
+    
+                super();
+    
+                this.state = {value: '', texts: []};
+    
+            }
+    
+            handleAreaChange(event) {
+    
+                this.setState({value: event.target.value});
+    
+            }
+
+            handleSubmit(event) {
+
+                this.state.texts.push(this.state.value);
+
+                this.setState({texts: this.state.texts});
+
+                event.preventDefault();
+                
+            }
+    
+            render() {
+
+                const result = this.state.texts.map((elem, i) => 
+                
+                    <p key={i}>{elem}</p>
+                
+                );
+
+                return (
+    
+                    <div>
+                        <div>{result}</div>
+
+                        <form onSubmit={this.handleSubmit.bind(this)}>
+
+                            <textarea 
+
+                                value={this.state.value}
+                                onChange={this.handleAreaChange.bind(this)}
+                            
+                            />
+
+                            <input type="submit" />
+
+                        </form>
+
+                    </div>
+    
+                );
+            }
+        }
+        
+                ReactDOM.render(
+                    <App />, document.getElementById('content7')
+                );
+            
+            
+                </script>
+    <hr>
+
+
+
+    <h3>Задание 8. Дан селект со списком CSS цветов. Дан абзац. Сделайте так,
+        чтобы при смене цвета абзац красился в выбранный цвет.
+
+
+    </h3>
+
+    <div id="content8"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                    
+        constructor() {
+
+            super();
+
+            this.state = {value: '', arr: ['red', 'green', 'blue', 'yellow']};
+
+        }
+
+        handleSelectChange(event) {
+
+            console.log(this.state.value);
+            
+
+            this.setState({value: event.target.value});
+
+        }
+
+
+
+        render() {
+
+            const result = 'Дан селект со списком CSS цветов. Дан абзац. Сделайте так,         чтобы при смене цвета абзац красился в выбранный цвет.';
+
+                    const options = this.state.arr.map((elem, i) => 
+    
+                    <option key={i} value={i}>{elem}</option>
+                    
+                    );
+
+            const background = {background: this.state.arr[this.state.value]};
+
+
+            return (
+
+                <div>
+                   <p style={background}>{result}</p>
+
+                    <select 
+                        value={this.state.value} 
+                        onChange={this.handleSelectChange.bind(this)}
+                    >
+                        {options}
+                    </select> 
+                        
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content8')
+    );
+
+                    
+ </script>
+    <hr>
+
+
+    <h3>Задание 9. Дан селект с двумя значениями: 'отмечено' и 'не отмечено'.
+        Дан также чекбокс. Сделайте так, чтобы при изменении значения селекта,
+        чекбокс менял свое состояние с 'отмечено' на 'не отмечено' и наоброт.
+
+
+    </h3>
+
+    <div id="content9"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                    
+        constructor() {
+
+            super();
+
+            this.state = {value: 0, arr: ['отмечено', 'не отмечено']};
+
+        }
+
+        handleSelectChange(event) {
+
+            this.setState({value: event.target.value});
+
+        }
+
+
+
+        render() {
+
+
+                    const options = this.state.arr.map((elem, i) => 
+    
+                    <option key={i} value={i}>{elem}</option>
+                    
+                    );
+
+                    let checked;
+
+                    if(this.state.value === 0) {
+
+                        checked = true;
+
+                    } else {
+
+                        checked = false;
+
+                    }
+
+
+            return (
+
+                <div>
+                   <p>{this.state.value}</p>
+
+                   <input 
+                        type="checkbox"
+                        checked={checked}
+                    />
+                    <select 
+                        value={this.state.value} 
+                        onChange={this.handleSelectChange.bind(this)}
+                    >
+                        {options}
+                    </select> 
+                        
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content9')
+    );
+
+                    
+ </script>
+    <hr>
+
+
+
+
+
+    <h3>Задание 10. Дан селект и 3 абзаца. В селекте можно выбрать один из трех пунктов.
+        Сделайте так, чтобы в зависимости от выбора на экране был виден один из трех абзацев.
+
+
+    </h3>
+
+    <div id="content10"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                       
+           constructor() {
+   
+               super();
+   
+               this.state = {value: 0, arr: ['1', '2', '3']};
+   
+           }
+   
+           handleSelectChange(event) {
+
+               this.setState({value: event.target.value});
+   
+           }
+   
+   
+   
+           render() {
+   
+   
+            const options = this.state.arr.map((elem, i) => 
+
+            <option key={i} value={i}>{elem}</option>
+            
+            );
+
+            const text1 = 'aaaaaaa';
+            const text2 = 'bbbbbbb';
+            const text3 = 'cccccccc';
+
+            let text;
+
+            if (this.state.value === '0') {
+                text = text1;
+            } else if (this.state.value === '1') {
+                text = text2;
+            } else {
+                text = text3;
+            }
+
+   
+        return (
+
+            <div>
+                <p>{text}</p>
+
+                <select 
+                    value={this.state.value} 
+                    onChange={this.handleSelectChange.bind(this)}
+                >
+                    {options}
+                </select> 
+                    
+            </div>
+
+        );
+           }
+       }
+       
+       ReactDOM.render(
+           <App />, document.getElementById('content10')
+       );
+   
+                       
+    </script>
+    <hr>
+
+
+    <h3>Задание 11. Дан инпут, кнопка и селект. Сделайте следующее:
+        в инпут вводится какая-то строка и по нажатию на кнопку эта строка
+        должна добавится в конец селекта в виде нового option.
+
+    </h3>
+
+    <div id="content11"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                           
+               constructor() {
+       
+                   super();
+       
+                   this.state = {value: 0, value2: '', arr: ['1', '2', '3']};
+       
+               }
+       
+               handleSelectChange(event) {
+    
+                   this.setState({value: event.target.value});
+       
+               }
+
+               handleInputChange(event) {
+    
+                    this.setState({value2: event.target.value});
+
+                }
+
+                handleFormChange(event) {
+
+                    event.preventDefault();
+
+                    this.state.arr.push(this.state.value2);
+
+                    this.setState({arr: this.state.arr});
+
+                }
+       
+       
+       
+               render() {
+       
+       
+                const options = this.state.arr.map((elem, i) => 
+    
+                <option key={i} value={i}>{elem}</option>
+                
+                );
+    
+          
+            return (
+    
+                <div>
+
+                    <form onSubmit={this.handleFormChange.bind(this)}>
+                        <input 
+                            value={this.state.value2} 
+                            onChange={this.handleInputChange.bind(this)}
+                        />
+        
+                        <select 
+                            value={this.state.value} 
+                        >
+                            {options}
+                        </select> 
+
+                        <input type="submit" />
+
+                    </form>
+                        
+                </div>
+    
+            );
+               }
+           }
+           
+           ReactDOM.render(
+               <App />, document.getElementById('content11')
+           );
+       
+                           
+        </script>
+    <hr>
+
+
+    <h3>Задание 12. Дан чекбокс и инпут. Сделайте так, чтобы если чекбокс не отмечен -
+        то инпут находится в заблокированном состоянии (через disabled, а если отмечен -
+        то в незаблокированном.
+    </h3>
+
+    <div id="content12"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                                   
+                       constructor() {
+               
+                           super();
+               
+                           this.state = {value: '', checked:false};
+               
+                       }
+               
+                       handleInputChange(event) {
+            
+                            this.setState({value: event.target.value});
+        
+                        }
+        
+                        handleCheckboxChange(event) {
+        
+                            this.setState({checked: !this.state.checked});
+        
+                        }
+               
+               
+               
+                       render() {
+
+              
+                  
+                    return (
+            
+                        <div>
+        
+                            <input 
+                                type="checkbox"
+                                checked={this.state.checked}
+                                onClick={this.handleCheckboxChange.bind(this)}
+                            />
+                            <input 
+                                value={this.state.value}
+                                disabled={this.state.checked}
+                                onChange={this.handleInputChange.bind(this)}
+                            />
+                
+                                
+                        </div>
+            
+                    );
+                       }
+                   }
+                   
+                   ReactDOM.render(
+                       <App />, document.getElementById('content12')
+                   );
+               
+                                   
+                </script>
+    <hr>
+
+
+    <h3>Задание 13. Даны 3 селекта. В первом можно выбрать день, во втором месяц, а в третьем год. 
+        Дан абзац. Сделайте так, чтобы в этот абзац вывелся день недели за выбранную дату. 
+        Пусть по умолчанию в селекте отображается текущая дата.
+    </h3>
+
+    <div id="content13"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                                               
+                constructor() {
+        
+                    super();
+        
+                    this.state = {
+                        valueDay: '', 
+                        valueMonth: '', 
+                        valueYear: '', 
+                        arrDay: [1,2,3,4,5,6,7,8,9],
+                        arrMonth:[1,2,3,4,5,6,7,8,9],
+                        arrYear: [2018, 2019]
+                    }
+        
+                }
+        
+
+                handleSelectChange1(event) {
+
+                    this.setState({valueDay: event.target.value});
+
+                }
+                handleSelectChange2(event) {
+
+                    this.setState({valueMonth: event.target.value});
+
+                }
+                handleSelectChange3(event) {
+
+                    this.setState({valueYear: event.target.value});
+
+                }
+        
+        
+        
+                render() {
+
+                    const optionsDay = this.state.arrDay.map((elem, i) => <option key={i} value={i}>{elem}</option>);
+                    const optionsMonth = this.state.arrMonth.map((elem, i) => <option key={i} value={i}>{elem}</option>);
+                    const optionsYear = this.state.arrYear.map((elem, i) => <option key={i} value={i}>{elem}</option>);
+        
+                    const date = new Date(this.state.valueYear, this.state.valueMonth, this.state.valueDay);
+
+                    let result = date.getDay();
+
+                   
+        
+                    
+
+
+            
+            return (
+    
+                <div>
+
+                    <p>{result}</p>
+
+                    <select 
+                            value={this.state.valueDay} 
+                            onChange={this.handleSelectChange1.bind(this)}
+                        >
+                            {optionsDay}
+                    </select> 
+                    <select 
+                            value={this.state.valueMonth} 
+                            onChange={this.handleSelectChange2.bind(this)}
+                        >
+                            {optionsMonth}
+                    </select> 
+                    <select 
+                            value={this.state.valueYear} 
+                            onChange={this.handleSelectChange3.bind(this)}
+                        >
+                            {optionsYear}
+                    </select> 
+        
+                        
+                </div>
+    
+            );
+                }
+            }
+            
+            ReactDOM.render(
+                <App />, document.getElementById('content13')
+            );
+        
+                            
+        </script>
+    <hr>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+
+</html>
