@@ -617,6 +617,44 @@
 
 
 
+    <h3>Задание 10. Дан селект и 3 абзаца. В селекте можно выбрать один из трех пунктов.
+        Сделайте так, чтобы в зависимости от выбора на экране был виден один из трех абзацев.
+
+
+    </h3>
+
+    <div id="content10"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                       
+           constructor() {
+   
+               super();
+   
+               this.state = {value: 0, arr: ['1', '2', '3']};
+   
+           }
+   
+           handleSelectChange(event) {
+
+               this.setState({value: event.target.value});
+   
+           }
+   
+   
+
+       
+       ReactDOM.render(
+           <App />, document.getElementById('content10')
+       );
+   
+                       
+    </script>
+    <hr>
+
+
 
 
 
