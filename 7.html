@@ -150,7 +150,31 @@
         
                 }
         
- 
+                render() {
+                    let text; 
+
+                    if(this.state.checked) {
+                        text = `Дан чекбокс и какой-то абзац с текстом. 
+                                  Сделайте так, чтобы если чекбокс отмечен - абзац был виден на экране,
+                                  а если не отмечен - не видим.`;
+
+                    }
+
+                    return (
+                        
+                        <div>
+                            <p>{text}</p>
+                            <input 
+                                type="checkbox"
+                                checked={this.state.checked} 
+                                onChange={this.handleCheckboxChange.bind(this)}
+                            />
+                        </div>
+        
+                    );
+                }
+            }
+            
             ReactDOM.render(
                 <App />, document.getElementById('content3')
             );
