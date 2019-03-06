@@ -561,7 +561,49 @@
 
 
 
+        render() {
 
+
+                    const options = this.state.arr.map((elem, i) => 
+    
+                    <option key={i} value={i}>{elem}</option>
+                    
+                    );
+
+                    let checked;
+
+                    if(this.state.value === 0) {
+
+                        checked = true;
+
+                    } else {
+
+                        checked = false;
+
+                    }
+
+
+            return (
+
+                <div>
+                   <p>{this.state.value}</p>
+
+                   <input 
+                        type="checkbox"
+                        checked={checked}
+                    />
+                    <select 
+                        value={this.state.value} 
+                        onChange={this.handleSelectChange.bind(this)}
+                    >
+                        {options}
+                    </select> 
+                        
+                </div>
+
+            );
+        }
+    }
     
     ReactDOM.render(
         <App />, document.getElementById('content9')
