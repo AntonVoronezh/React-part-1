@@ -914,7 +914,37 @@
 
 
             
+            return (
+    
+                <div>
 
+                    <p>{result}</p>
+
+                    <select 
+                            value={this.state.valueDay} 
+                            onChange={this.handleSelectChange1.bind(this)}
+                        >
+                            {optionsDay}
+                    </select> 
+                    <select 
+                            value={this.state.valueMonth} 
+                            onChange={this.handleSelectChange2.bind(this)}
+                        >
+                            {optionsMonth}
+                    </select> 
+                    <select 
+                            value={this.state.valueYear} 
+                            onChange={this.handleSelectChange3.bind(this)}
+                        >
+                            {optionsYear}
+                    </select> 
+        
+                        
+                </div>
+    
+            );
+                }
+            }
             
             ReactDOM.render(
                 <App />, document.getElementById('content13')
