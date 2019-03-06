@@ -817,7 +817,32 @@
                         }
                
                
+               
+                       render() {
 
+              
+                  
+                    return (
+            
+                        <div>
+        
+                            <input 
+                                type="checkbox"
+                                checked={this.state.checked}
+                                onClick={this.handleCheckboxChange.bind(this)}
+                            />
+                            <input 
+                                value={this.state.value}
+                                disabled={this.state.checked}
+                                onChange={this.handleInputChange.bind(this)}
+                            />
+                
+                                
+                        </div>
+            
+                    );
+                       }
+                   }
                    
                    ReactDOM.render(
                        <App />, document.getElementById('content12')
