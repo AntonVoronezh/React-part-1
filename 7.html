@@ -123,6 +123,42 @@
     <hr>
 
 
+    <h3>Задание 3. Дан чекбокс и какой-то абзац с текстом.
+        Сделайте так, чтобы если чекбокс отмечен - абзац был виден на экране,
+        а если не отмечен - не видим.
+
+
+    </h3>
+
+    <div id="content3"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+        
+                constructor() {
+        
+                    super();
+        
+                    this.state = {checked: true};
+        
+                }
+        
+                handleCheckboxChange(event) {
+        
+                    this.setState({checked: !this.state.checked});
+        
+                }
+        
+ 
+            ReactDOM.render(
+                <App />, document.getElementById('content3')
+            );
+        
+        
+            </script>
+    <hr>
+
 
 
 
