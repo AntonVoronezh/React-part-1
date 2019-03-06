@@ -853,7 +853,76 @@
     <hr>
 
 
+    <h3>Задание 13. Даны 3 селекта. В первом можно выбрать день, во втором месяц, а в третьем год. 
+        Дан абзац. Сделайте так, чтобы в этот абзац вывелся день недели за выбранную дату. 
+        Пусть по умолчанию в селекте отображается текущая дата.
+    </h3>
 
+    <div id="content13"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                                               
+                constructor() {
+        
+                    super();
+        
+                    this.state = {
+                        valueDay: '', 
+                        valueMonth: '', 
+                        valueYear: '', 
+                        arrDay: [1,2,3,4,5,6,7,8,9],
+                        arrMonth:[1,2,3,4,5,6,7,8,9],
+                        arrYear: [2018, 2019]
+                    }
+        
+                }
+        
+
+                handleSelectChange1(event) {
+
+                    this.setState({valueDay: event.target.value});
+
+                }
+                handleSelectChange2(event) {
+
+                    this.setState({valueMonth: event.target.value});
+
+                }
+                handleSelectChange3(event) {
+
+                    this.setState({valueYear: event.target.value});
+
+                }
+        
+        
+        
+                render() {
+
+                    const optionsDay = this.state.arrDay.map((elem, i) => <option key={i} value={i}>{elem}</option>);
+                    const optionsMonth = this.state.arrMonth.map((elem, i) => <option key={i} value={i}>{elem}</option>);
+                    const optionsYear = this.state.arrYear.map((elem, i) => <option key={i} value={i}>{elem}</option>);
+        
+                    const date = new Date(this.state.valueYear, this.state.valueMonth, this.state.valueDay);
+
+                    let result = date.getDay();
+
+                   
+        
+                    
+
+
+            
+
+            
+            ReactDOM.render(
+                <App />, document.getElementById('content13')
+            );
+        
+                            
+        </script>
+    <hr>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 
