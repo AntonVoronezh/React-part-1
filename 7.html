@@ -379,6 +379,54 @@
     <hr>
 
 
+    <h2>Практика</h2>
+
+    <h3>Задание 7. Дан текстареа и кнопка. Дан также стейт texts с массивом текстов.
+        Изначально этот массив пустой, но каждый раз по нажатию на кнопку в конец этого
+        массива должно записаться текущее содержимое текстареа. Выведите содержимое
+        массива this.state.texts так, чтобы каждый элемент массива выводился в новом абзаце.
+
+
+    </h3>
+
+    <div id="content7"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+            
+            constructor() {
+    
+                super();
+    
+                this.state = {value: '', texts: []};
+    
+            }
+    
+            handleAreaChange(event) {
+    
+                this.setState({value: event.target.value});
+    
+            }
+
+            handleSubmit(event) {
+
+                this.state.texts.push(this.state.value);
+
+                this.setState({texts: this.state.texts});
+
+                event.preventDefault();
+                
+            }
+    
+
+                ReactDOM.render(
+                    <App />, document.getElementById('content7')
+                );
+            
+            
+                </script>
+    <hr>
 
 
 
