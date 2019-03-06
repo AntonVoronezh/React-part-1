@@ -532,6 +532,44 @@
     <hr>
 
 
+    <h3>Задание 9. Дан селект с двумя значениями: 'отмечено' и 'не отмечено'.
+        Дан также чекбокс. Сделайте так, чтобы при изменении значения селекта,
+        чекбокс менял свое состояние с 'отмечено' на 'не отмечено' и наоброт.
+
+
+    </h3>
+
+    <div id="content9"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                    
+        constructor() {
+
+            super();
+
+            this.state = {value: 0, arr: ['отмечено', 'не отмечено']};
+
+        }
+
+        handleSelectChange(event) {
+
+            this.setState({value: event.target.value});
+
+        }
+
+
+
+
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content9')
+    );
+
+                    
+ </script>
+    <hr>
 
 
 
