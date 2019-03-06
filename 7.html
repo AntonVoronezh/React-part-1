@@ -461,7 +461,45 @@
 
 
 
+    <h3>Задание 8. Дан селект со списком CSS цветов. Дан абзац. Сделайте так,
+        чтобы при смене цвета абзац красился в выбранный цвет.
 
+
+    </h3>
+
+    <div id="content8"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                    
+        constructor() {
+
+            super();
+
+            this.state = {value: '', arr: ['red', 'green', 'blue', 'yellow']};
+
+        }
+
+        handleSelectChange(event) {
+
+            console.log(this.state.value);
+            
+
+            this.setState({value: event.target.value});
+
+        }
+
+
+
+
+    ReactDOM.render(
+        <App />, document.getElementById('content8')
+    );
+
+                    
+ </script>
+    <hr>
 
 
 
