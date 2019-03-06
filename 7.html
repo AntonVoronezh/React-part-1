@@ -183,6 +183,44 @@
             </script>
     <hr>
 
+    <h2>На селекты</h2>
+
+    <h3>Задание 4. Дан селект со списком городов (просто селект в HTML коде,
+        option не из массива). Дан также абзац, в который выводится выбранный город.
+        Сделайте так, чтобы при смене города в селекте в абзаце он также менялся.
+
+
+    </h3>
+
+    <div id="content4"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {value:''};
+    
+            }
+    
+            handleCheckboxChange(event) {
+    
+                this.setState({value: event.target.value});
+    
+            }
+    
+
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content4')
+        );
+    
+    
+        </script>
+    <hr>
 
 
 
