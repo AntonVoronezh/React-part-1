@@ -212,7 +212,26 @@
     
             }
     
-
+            render() {
+                return (
+    
+                    <div>
+                        <p>{this.state.value}</p>
+                        <select 
+                            type="checkbox"
+                            checked={this.state.checked} 
+                            onChange={this.handleCheckboxChange.bind(this)}
+                        >
+                            <option>Москва</option>
+                            <option>Воронеж</option>
+                            <option>Питер</option>
+                            <option>Тула</option>
+                        </select> 
+                    </div>
+    
+                );
+            }
+        }
         
         ReactDOM.render(
             <App />, document.getElementById('content4')
