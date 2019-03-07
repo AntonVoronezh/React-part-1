@@ -85,6 +85,90 @@
     </script>
     <hr>
 
+    <h3>Задание 2. Дан массив с работниками. У каждого работника есть имя, фамилия и зарплата.
+        Выведите этих работников на экран в виде таблицы. Для каждого работника сделайте
+        чекбокс, который изначально будет отмечен. Под таблицей выведите сумму зарплат тех
+        работников, для которых чекбокс отмечен.
+
+
+    </h3>
+
+    <div id="content2"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {
+                    sum:0,
+                    checked:[true,true,true,true],
+                    workers: [
+                        {family:'aaa', name:'a', salary:100},
+                        {family:'bbb', name:'b', salary:200},
+                        {family:'ccc', name:'c', salary:300},
+                        {family:'ddd', name:'d', salary:400}
+                    ]
+                };
+    
+            }
+
+    
+            handleCheckboxChange(argNum) {
+
+                this.state.checked[argNum] = !this.state.checked[argNum];
+    
+                this.setState({checked: this.state.checked});
+
+                // console.log(this.state.checked);
+
+                this.getSum();
+    
+            }
+
+            getSum() {
+
+                this.setState({sum: 0});
+
+                let res = 0;
+
+                this.state.workers.map((elem,i) => {
+
+                    if(this.state.checked[i]) {
+
+                        res += elem.salary;
+
+                    }
+                    
+                });
+
+                this.setState({sum: res});
+
+            }
+    
+            render() {
+    
+                const table = this.state.workers.map((elem,i) => 
+    
+                <tr key={i}>
+                        <td>
+                        <input 
+                            type="checkbox"
+                            checked={this.state.checked[i]}
+                            onChange={this.handleCheckboxChange.bind(this, i)}
+                        />
+                    </td>
+                    <td>{elem.name}</td>
+                    <td>{elem.family}</td>
+                    <td>{elem.salary}</td>
+                    
+                </tr>
+
+                );
+
 
 
     
