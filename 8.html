@@ -602,6 +602,51 @@
 
 
 
+<h3>Задание 7. Дан массив с туристическими маршрутами. Выведите эти маршруты на экран 
+    так, чтобы рядом с каждым стояла радио-кнопочка. Пользователь может выбрать один 
+    из маршрутов. Его выбор должен отобразиться на экране в абзаце.
+
+
+    </h3>
+
+    <div id="content7"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+        
+                constructor() {
+        
+                    super();
+        
+                    this.state = {
+                        value: '0',
+                        arr: [
+                            'aaaaaaaa',
+                            'cccccccccc',
+                            'dddddddddddd',
+                            'jjjjjjjjjjjj'
+                        ]
+                    };
+        
+                }
+    
+        
+                handleRadioChange(argNum) {
+    
+                    this.state.value = `${argNum}`;
+        
+                    this.setState({value: this.state.value});
+    
+                }
+    
+
+            }
+            
+
+        
+            </script>
+    <hr>
 
 
     
