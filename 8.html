@@ -388,6 +388,16 @@
         
                 }
     
+        
+                handleChangeClick(event, argNum) {
+    
+                    this.state.arr[argNum] = event.target.value;
+        
+                    this.setState({arr: this.state.arr});
+    
+                }
+    
+        
 
 
 
