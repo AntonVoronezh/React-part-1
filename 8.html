@@ -514,7 +514,32 @@
 
             }
 
-  
+            handleButtonChange(argNum, argStr){
+
+
+                if(argStr === 'name') {
+
+                    this.state.disabled[argNum].name = !this.state.disabled[argNum].name;
+    
+                    this.setState({disabled: this.state.disabled});
+
+                    console.log(argNum, argStr);
+
+                }
+                
+                if(argStr === 'age') {
+
+                    console.log(argNum, argStr);
+
+                    this.state.disabled[argNum].age = !this.state.disabled[argNum].age;
+    
+                    this.setState({disabled: this.state.disabled});
+
+                }
+                
+            }
+
+
 
 
 
