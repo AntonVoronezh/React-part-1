@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://npmcdn.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://npmcdn.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
+</head>
+
+<body>
+
+    <h2>
+        Практика по работе с формами в фреймворке React
+    </h2>
+
+    <h2>Чекбоксы + массивы</h2>
+
+    <h3>Задание 1. Дан массив. Выведите элементы этого массива в виде списка ul.
+        Сделайте так, чтобы внутри каждой li был чекбокс, по нажатию на который
+        содержимое чекбокса будет перечеркиваться.
+
+
+    </h3>
+
+    <div id="content1"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+        constructor() {
+
+            super();
+
+            this.state = {values: [false, false, false],names: ['aaaa', 'bbbb', 'cccc']};
+
+        }
+
+        handleCheckboxChange(argNum) {
+
+            this.state.values[argNum] = !this.state.values[argNum];
+
+            this.setState({values: this.state.values});
+
+        }
+
+        render() {
+
+            const list = this.state.names.map((elem,i) => 
+
+            <li key={i}>
+                <input 
+                    type="checkbox"
+                    onChange={this.handleCheckboxChange.bind(this, i)}
+                />
+                    {this.state.values[i] ? <s> {this.state.names[i]} </s> : this.state.names[i]} 
+                
+            </li>
+
+            );
+
+            return (
+                
+                <div>
+                     <p>{this.state.values}</p>
+                    <ul>{list}</ul>
+
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content1')
+    );
+
+
+    </script>
+    <hr>
+
+    <h3>Задание 2. Дан массив с работниками. У каждого работника есть имя, фамилия и зарплата.
+        Выведите этих работников на экран в виде таблицы. Для каждого работника сделайте
+        чекбокс, который изначально будет отмечен. Под таблицей выведите сумму зарплат тех
+        работников, для которых чекбокс отмечен.
+
+
+    </h3>
+
+    <div id="content2"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {
+                    sum:0,
+                    checked:[true,true,true,true],
+                    workers: [
+                        {family:'aaa', name:'a', salary:100},
+                        {family:'bbb', name:'b', salary:200},
+                        {family:'ccc', name:'c', salary:300},
+                        {family:'ddd', name:'d', salary:400}
+                    ]
+                };
+    
+            }
+
+    
+            handleCheckboxChange(argNum) {
+
+                this.state.checked[argNum] = !this.state.checked[argNum];
+    
+                this.setState({checked: this.state.checked});
+
+                // console.log(this.state.checked);
+
+                this.getSum();
+    
+            }
+
+            getSum() {
+
+                this.setState({sum: 0});
+
+                let res = 0;
+
+                this.state.workers.map((elem,i) => {
+
+                    if(this.state.checked[i]) {
+
+                        res += elem.salary;
+
+                    }
+                    
+                });
+
+                this.setState({sum: res});
+
+            }
+    
+            render() {
+    
+                const table = this.state.workers.map((elem,i) => 
+    
+                <tr key={i}>
+                        <td>
+                        <input 
+                            type="checkbox"
+                            checked={this.state.checked[i]}
+                            onChange={this.handleCheckboxChange.bind(this, i)}
+                        />
+                    </td>
+                    <td>{elem.name}</td>
+                    <td>{elem.family}</td>
+                    <td>{elem.salary}</td>
+                    
+                </tr>
+
+                );
+
+                return (
+                    
+                    <div> 
+                         <table
+                         ><tbody>{table}</tbody></table>
+                         <p>{this.state.sum}</p>
+    
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content2')
+        );
+    
+    
+        </script>
+    <hr>
+
+
+    <h2>Чекбоксы + ифы</h2>
+
+
+    <h3>Задание 3. Дан массив. Выведите каждый элемент этого массива в отдельном абзаце.
+        Сделайте так, чтобы над каждым абзацем был чекбокс, со следующим поведением:
+        если он отмечен - абзац под ним есть на экране, а если не отмечен - абзаца нет.
+        По умолчанию пусть все чекбоксы отмечены.
+
+
+    </h3>
+
+    <div id="content3"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+        
+                constructor() {
+        
+                    super();
+        
+                    this.state = {
+                        checked:[true,true,true,true],
+                        arr: [
+                            'aaaaaaaa',
+                            'cccccccccc',
+                            'dddddddddddd',
+                            'jjjjjjjjjjjj'
+                        ]
+                    };
+        
+                }
+    
+        
+                handleCheckboxChange(argNum) {
+    
+                    this.state.checked[argNum] = !this.state.checked[argNum];
+        
+                    this.setState({checked: this.state.checked});
+    
+                }
+    
+        
+                render() {
+        
+                    const result = this.state.arr.map((elem,i) => 
+        
+                    <p key={i}>
+                            
+                            <input 
+                                type="checkbox"
+                                checked={this.state.checked[i]}
+                                onChange={this.handleCheckboxChange.bind(this, i)}
+                            />
+                       <br />
+                        {this.state.checked[i] ? elem : null}
+                        <br /><br />
+                    </p>
+    
+                    );
+    
+                    return (
+                        
+                        <div> 
+                            {result}
+        
+                        </div>
+        
+                    );
+                }
+            }
+            
+            ReactDOM.render(
+                <App />, document.getElementById('content3')
+            );
+        
+        
+            </script>
+    <hr>
+
+
+    <h3>Задание 4. Дан массив с юзерами:
+
+        this.state = {
+        users: [
+        {name: 'Коля', surname: 'Иванов', age: 30},
+        {name: 'Вася', surname: 'Петров', age: 40},
+        {name: 'Петя', surname: 'Сидоров', age: 50},
+        ]
+        };
+        Выведите элементы этого массива в виде списка ul. Имя, фамилия и возраст каждого
+        юзера должны стоять в одной li через пробел. Внутри каждой li сделайте чекбокс.
+        Если чекбокс не отмечен, то в li должно быть только имя юзера, а если отмечен -
+        имя, фамилия и возраст.
+
+
+    </h3>
+
+    <div id="content4"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+            
+            constructor() {
+    
+                super();
+    
+                this.state = {
+                    checked:[true,true,true],
+                    users: [
+                        {name: 'Коля', surname: 'Иванов', age: 30},
+                        {name: 'Вася', surname: 'Петров', age: 40},
+                        {name: 'Петя', surname: 'Сидоров', age: 50},
+                    ]
+                };
+    
+            }
+
+    
+            handleCheckboxChange(argNum) {
+
+                this.state.checked[argNum] = !this.state.checked[argNum];
+    
+                this.setState({checked: this.state.checked});
+
+            }
+
+    
+            render() {
+    
+                const result = this.state.users.map((elem,i) => 
+    
+                <li key={i}>
+                        
+                        <input 
+                            type="checkbox"
+                            checked={this.state.checked[i]}
+                            onChange={this.handleCheckboxChange.bind(this, i)}
+                        />
+                    {this.state.checked[i] ? `${elem.name} ${elem.surname} ${elem.age}` : elem.name}
+                </li>
+
+                );
+
+                return (
+                    
+                    <div> 
+                        <ul>
+                            {result}
+                        </ul>
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content4')
+        );
+    
+    
+        </script>
+    <hr>
+
+
+    <h2>Редактирование элементов</h2>
+
+
+    <h3>Задание 5. Дан массив. Выведите элементы этого массив в виде списка ul. Сделайте так, чтобы
+        по нажатию на li внутри нее появился инпут, с помощью которого можно будет
+        поредактировать текст этой li. По потери фокуса текст из инпута должен записаться
+        обратно в li, а инпут исчезнуть.
+
+    </h3>
+
+    <div id="content5"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                
+                constructor() {
+        
+                    super();
+        
+                    this.state = {
+                        arr: [
+                            'aaaaaaaa',
+                            'cccccccccc',
+                            'dddddddddddd',
+                            'jjjjjjjjjjjj'
+                        ]
+                    };
+        
+                }
+    
+        
+                handleChangeClick(event, argNum) {
+    
+                    this.state.arr[argNum] = event.target.value;
+        
+                    this.setState({arr: this.state.arr});
+    
+                }
+    
+        
+                render() {
+        
+                    const result = this.state.arr.map((elem,i) => 
+        
+                    <li key={i}>
+                        <input 
+                        type="text"
+                        value={elem}
+                        onChange={this.handleChangeClick.bind(this,i)}
+                        />
+                        
+                        
+                    </li>
+    
+                    );
+    
+                    return (
+                        
+                        <div> 
+                            <ul>
+                                {result}
+                            </ul>
+                        </div>
+        
+                    );
+                }
+            }
+            
+            ReactDOM.render(
+                <App />, document.getElementById('content5')
+            );
+        
+        
+            </script>
+    <hr>
+
+    <h3>Задание 6. Дан следующий массив:
+
+        this.state = {
+        users: [
+        {name: 'Коля', age: 30},
+        {name: 'Вася', age: 40},
+        {name: 'Петя', age: 50},
+        ]
+        };
+        Выведите его на экран в виде таблицы:
+
+        <table>
+            <tr>
+                <td>Коля</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>Вася</td>
+                <td>40</td>
+            </tr>
+            <tr>
+                <td>Петя</td>
+                <td>50</td>
+            </tr>
+        </table>
+        Сделайте так, чтобы внутри каждой td была кнопка 'редактировать',
+        по нажатию на которую текст этой td можно будет поредактировать с помощью
+        появившегося в ней инпута.
+
+    </h3>
+
+    <div id="content6"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                        
+            constructor() {
+    
+                super();
+    
+                this.state = {
+                    disabled: [
+                    {name: true, age: true},
+                    {name: true, age: true},
+                    {name: true, age: true},
+                    ],
+                    users: [
+                    {name: 'Коля', age: 30},
+                    {name: 'Вася', age: 40},
+                    {name: 'Петя', age: 50},
+                ]
+                };
+    
+            }
+
+    
+            handleInputChange(argNum, argStr) {
+
+                // console.log('handleInputChange', argNum);
+
+                
+                if(argStr === 'name') {
+
+                    this.state.users[argNum].name = event.target.value;
+
+                    this.setState({users: this.state.users});
+
+                }
+
+                if(argStr === 'age') {
+
+                    this.state.users[argNum].age = event.target.value;
+
+                    this.setState({users: this.state.users});
+
+                }
+
+            }
+
+            handleButtonChange(argNum, argStr){
+
+
+                if(argStr === 'name') {
+
+                    this.state.disabled[argNum].name = !this.state.disabled[argNum].name;
+    
+                    this.setState({disabled: this.state.disabled});
+
+                    console.log(argNum, argStr);
+
+                }
+                
+                if(argStr === 'age') {
+
+                    console.log(argNum, argStr);
+
+                    this.state.disabled[argNum].age = !this.state.disabled[argNum].age;
+    
+                    this.setState({disabled: this.state.disabled});
+
+                }
+                
+            }
+
+            render() {
+
+                let dis = "disabled";
+    
+                const result = this.state.users.map((elem,i) => 
+    
+                <tr key={i}>
+                    <td>
+                        <input 
+                        type="text"
+                        value={elem.name}
+                        disabled={this.state.disabled[i].name}
+                        onChange={this.handleInputChange.bind(this,i, 'name')}
+                        />
+                        <button
+                        onClick={this.handleButtonChange.bind(this,i, 'name')}
+                        >kkk</button>
+                    </td>
+                    <td>
+                        <input 
+                        type="text"
+                        value={elem.age}
+                        disabled={this.state.disabled[i].age}
+                        onChange={this.handleInputChange.bind(this,i, 'age')}
+                        />
+                        <button
+                        onClick={this.handleButtonChange.bind(this,i, 'age')}
+                        >kkk</button>
+                    </td>
+
+                    
+                    
+                </tr>
+
+                );
+
+                return (
+                    
+                    <div> 
+                        <table>
+                            <tbody>
+                                {result}
+                            </tbody>
+                        </table>
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content6')
+        );
+    
+    
+        </script>
+    <hr>
+
+
+<h2>Практика</h2>
+
+
+
+<h3>Задание 7. Дан массив с туристическими маршрутами. Выведите эти маршруты на экран 
+    так, чтобы рядом с каждым стояла радио-кнопочка. Пользователь может выбрать один 
+    из маршрутов. Его выбор должен отобразиться на экране в абзаце.
+
+
+    </h3>
+
+    <div id="content7"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+        
+                constructor() {
+        
+                    super();
+        
+                    this.state = {
+                        value: '0',
+                        arr: [
+                            'aaaaaaaa',
+                            'cccccccccc',
+                            'dddddddddddd',
+                            'jjjjjjjjjjjj'
+                        ]
+                    };
+        
+                }
+    
+        
+                handleRadioChange(argNum) {
+    
+                    this.state.value = `${argNum}`;
+        
+                    this.setState({value: this.state.value});
+    
+                }
+    
+                render() {
+        
+                    const radio = this.state.arr.map((elem,i) => 
+                                   
+                            <input key={i}
+                                name="tourist"
+                                type="radio"
+                                value={`${i}`}
+                                checked={this.state.value === `${i}` ? true : false}
+                                onChange={this.handleRadioChange.bind(this, i)}
+                            />
+                    );
+
+                    let result = this.state.arr[Number(this.state.value)];
+    
+                    return (
+                        
+                        <div> 
+                            {radio}
+                            <p>{result}</p>
+        
+                        </div>
+        
+                    );
+                }
+            }
+            
+            ReactDOM.render(
+                <App />, document.getElementById('content7')
+            );
+        
+        
+            </script>
+    <hr>
+
+
+    
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+
+</html>
