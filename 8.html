@@ -232,6 +232,44 @@
                     this.setState({checked: this.state.checked});
     
                 }
+    
+        
+                render() {
+        
+                    const result = this.state.arr.map((elem,i) => 
+        
+                    <p key={i}>
+                            
+                            <input 
+                                type="checkbox"
+                                checked={this.state.checked[i]}
+                                onChange={this.handleCheckboxChange.bind(this, i)}
+                            />
+                       <br />
+                        {this.state.checked[i] ? elem : null}
+                        <br /><br />
+                    </p>
+    
+                    );
+    
+                    return (
+                        
+                        <div> 
+                            {result}
+        
+                        </div>
+        
+                    );
+                }
+            }
+            
+            ReactDOM.render(
+                <App />, document.getElementById('content3')
+            );
+        
+        
+            </script>
+    <hr>
 
 
     
