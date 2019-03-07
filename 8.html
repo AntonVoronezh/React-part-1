@@ -319,6 +319,24 @@
 
             }
 
+    
+            render() {
+    
+                const result = this.state.users.map((elem,i) => 
+    
+                <li key={i}>
+                        
+                        <input 
+                            type="checkbox"
+                            checked={this.state.checked[i]}
+                            onChange={this.handleCheckboxChange.bind(this, i)}
+                        />
+                    {this.state.checked[i] ? `${elem.name} ${elem.surname} ${elem.age}` : elem.name}
+                </li>
+
+                );
+
+
 
 
     
