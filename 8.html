@@ -640,7 +640,23 @@
     
                 }
     
+                render() {
+        
+                    const radio = this.state.arr.map((elem,i) => 
+                                   
+                            <input key={i}
+                                name="tourist"
+                                type="radio"
+                                value={`${i}`}
+                                checked={this.state.value === `${i}` ? true : false}
+                                onChange={this.handleRadioChange.bind(this, i)}
+                            />
+                    );
 
+                    let result = this.state.arr[Number(this.state.value)];
+    
+
+                }
             }
             
 
