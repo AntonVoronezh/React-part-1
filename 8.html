@@ -539,6 +539,43 @@
                 
             }
 
+            render() {
+
+                let dis = "disabled";
+    
+                const result = this.state.users.map((elem,i) => 
+    
+                <tr key={i}>
+                    <td>
+                        <input 
+                        type="text"
+                        value={elem.name}
+                        disabled={this.state.disabled[i].name}
+                        onChange={this.handleInputChange.bind(this,i, 'name')}
+                        />
+                        <button
+                        onClick={this.handleButtonChange.bind(this,i, 'name')}
+                        >kkk</button>
+                    </td>
+                    <td>
+                        <input 
+                        type="text"
+                        value={elem.age}
+                        disabled={this.state.disabled[i].age}
+                        onChange={this.handleInputChange.bind(this,i, 'age')}
+                        />
+                        <button
+                        onClick={this.handleButtonChange.bind(this,i, 'age')}
+                        >kkk</button>
+                    </td>
+
+                    
+                    
+                </tr>
+
+                );
+
+
 
 
 
