@@ -398,6 +398,41 @@
                 }
     
         
+                render() {
+        
+                    const result = this.state.arr.map((elem,i) => 
+        
+                    <li key={i}>
+                        <input 
+                        type="text"
+                        value={elem}
+                        onChange={this.handleChangeClick.bind(this,i)}
+                        />
+                        
+                        
+                    </li>
+    
+                    );
+    
+                    return (
+                        
+                        <div> 
+                            <ul>
+                                {result}
+                            </ul>
+                        </div>
+        
+                    );
+                }
+            }
+            
+            ReactDOM.render(
+                <App />, document.getElementById('content5')
+            );
+        
+        
+            </script>
+    <hr>
 
 
 
