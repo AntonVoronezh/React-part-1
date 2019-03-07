@@ -50,7 +50,42 @@
 
         }
 
- 
+        render() {
+
+            const list = this.state.names.map((elem,i) => 
+
+            <li key={i}>
+                <input 
+                    type="checkbox"
+                    onChange={this.handleCheckboxChange.bind(this, i)}
+                />
+                    {this.state.values[i] ? <s> {this.state.names[i]} </s> : this.state.names[i]} 
+                
+            </li>
+
+            );
+
+            return (
+                
+                <div>
+                     <p>{this.state.values}</p>
+                    <ul>{list}</ul>
+
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content1')
+    );
+
+
+    </script>
+    <hr>
+
+
 
     
 
