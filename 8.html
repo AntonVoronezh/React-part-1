@@ -194,6 +194,44 @@
     <h2>Чекбоксы + ифы</h2>
 
 
+    <h3>Задание 3. Дан массив. Выведите каждый элемент этого массива в отдельном абзаце.
+        Сделайте так, чтобы над каждым абзацем был чекбокс, со следующим поведением:
+        если он отмечен - абзац под ним есть на экране, а если не отмечен - абзаца нет.
+        По умолчанию пусть все чекбоксы отмечены.
+
+
+    </h3>
+
+    <div id="content3"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+        
+                constructor() {
+        
+                    super();
+        
+                    this.state = {
+                        checked:[true,true,true,true],
+                        arr: [
+                            'aaaaaaaa',
+                            'cccccccccc',
+                            'dddddddddddd',
+                            'jjjjjjjjjjjj'
+                        ]
+                    };
+        
+                }
+    
+        
+                handleCheckboxChange(argNum) {
+    
+                    this.state.checked[argNum] = !this.state.checked[argNum];
+        
+                    this.setState({checked: this.state.checked});
+    
+                }
 
 
     
