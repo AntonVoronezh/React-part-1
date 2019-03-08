@@ -56,6 +56,13 @@
 
         }
 
+        handleTextareaChange(event) {
+
+            this.state.value = event.target.value;
+
+            this.setState({value: this.state.value});
+
+        }
 
 
 
