@@ -145,7 +145,32 @@
 
         }
 
-        
+        render() {
+
+            const list = this.state.arr.map((elem,i) => 
+
+            <div key={i} className="div">
+
+                    заметка #{i + 1}
+                    <br/>
+                    {this.state.time[i]}
+                    <br/>
+
+
+
+            </div>
+
+            );
+
+            return (
+                
+                <div>
+
+
+                </div>
+
+            );
+        }
     }
     
 
