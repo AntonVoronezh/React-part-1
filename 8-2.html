@@ -131,6 +131,15 @@
             this.setState({value2: this.state.value2});
 
         }
+        
+        handleInputBlur(argNum) {
+
+            this.state.arr[argNum] = this.state.value2;
+
+            this.state.editArr[argNum] = false;
+
+
+        }
 
         
     }
