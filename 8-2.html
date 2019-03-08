@@ -108,7 +108,9 @@
 
                 this.state.editArr[argNum] = true;
 
+                this.setState({editArr: this.state.editArr});
 
+                this.handleInputClick(argStr);
 
             }
 
