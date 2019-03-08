@@ -155,7 +155,11 @@
                     <br/>
                     {this.state.time[i]}
                     <br/>
-
+                    {this.state.editArr[i] ? <input type="text" value={this.state.value2}
+                    onBlur={this.handleInputBlur.bind(this, i)}
+                    onChange={this.handleInputChange.bind(this)}
+                    /> : elem}
+                    <br/>
 
 
             </div>
