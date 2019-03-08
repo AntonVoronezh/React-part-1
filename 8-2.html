@@ -76,6 +76,9 @@
 
             const time = date.getHours() + 'ч., ' + date.getMinutes() + 'мин., ' + date.getSeconds() + 'сек.';
 
+            this.state.time.push(time);
+
+            this.setState({time: this.state.time});
 
             
             // console.log(this.state);
