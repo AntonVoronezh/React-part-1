@@ -64,7 +64,18 @@
 
         }
 
+        handleSubmitClick() {
 
+            this.state.arr.push(this.state.value);
+            
+            this.setState({arr: this.state.arr});
+
+            this.setState({value: ''});
+
+            
+            // console.log(this.state);
+
+        }
 
 
 
