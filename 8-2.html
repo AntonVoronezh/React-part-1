@@ -94,6 +94,9 @@
 
             this.setState({time: this.state.time});
 
+            delete this.state.arr[argNum];
+
+            this.setState({arr: this.state.arr});
 
         }
 
