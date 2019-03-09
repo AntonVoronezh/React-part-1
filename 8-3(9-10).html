@@ -85,7 +85,17 @@
 
             }
 
+            if(argStr === 'salary') {
 
+                result =  this.state.arr.sort((a, b) => a.salary - b.salary)
+
+                this.setState({arr: result});
+
+            }
+            
+
+        }
+       
 
                
 
