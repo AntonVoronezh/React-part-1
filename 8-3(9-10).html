@@ -610,19 +610,341 @@ return (
                 }
 
 
-  
+                handleButtonClick(){
+
+                this.state.arr.push(this.state.value);
+
+                this.setState({arr:this.state.arr});
+                    
+                }
+
+                handleOptionChange(event) {
+
+                this.setState({num:Number(event.target.value)});
+
+                }
+                
+        
+                render() {
 
 
+    let result = this.state.arr[this.state.num];
+
+    const select = this.state.arr.map((elem,i) => 
+
+<option key={i} value={i}>   {elem}   </option>
+    
+    
+    );
 
 
+        
+        
+            return (
+                
+                <div>
+                    
+                    <select onChange={this.handleOptionChange.bind(this)}>
+                        {select}
+                    </select>
+                    <input onChange={this.handleInputChange.bind(this)}
+                    />
+                    <button onClick={this.handleButtonClick.bind(this)}>
+                        kkkkk
+                    </button>
+                    <p>{result}</p>
 
+                    
+                    
+            
+                </div>
+            
+            );
+            }
+                    }
+                    
+                    ReactDOM.render(
+                        <App />, document.getElementById('content6')
+                    );
+                
+                
+                    </script>
+    <hr>
+
+
+    <h3>Задание 15. Реализуйте калькулятор валют. Как он работает: дан инпут, 
+        в который вводится сумма и даны два селекта - в первом выбирается из какой валюты, 
+        а во втором - в какую. Дана также кнопка. По нажатию на эту кнопку в абзац должна 
+        вывестись сумма в выбранной валюте.
+        </h3>
+    
+        <div id="content7"></div>
+    
+        <script type="text/babel">
+    
+            class App extends React.Component {
+                                        
+                    constructor() {
+            
+                        super();
+            
+                        this.state = {
+                            value1:0,
+                            value2:0,
+                            inp:0,
+                            arr1: ['rub', 'funt', 'doll', 'fr', 'yen'],
+                            res:0
+                            
+                            }
+                            
+                    } 
+            
+                    handleInputChange(event) {
+    
+                    this.setState({inp:Number(event.target.value)});
+    
+                    }
+    
+    
+                    handleButtonClick(){
+    
+                        const tabl = [
+                            [1,0.9,0.8,0.7,0.5],
+                            [1.1,1,1.8,1.2,0.9],
+                            [1.2,0.9,1,1.1,0.5],
+                            [1.7,2.1,0.6,1,0.95]
+                            [1.1,0.68,0.79,1.2,1]
+                        ];
+
+                        const out = tabl[this.state.value1][this.state.value2] * this.state.inp;
+                        
+                        this.setState({res:out});
+
+                    }
+    
+                    handleOptionChange1(event) {
+    
+                        this.setState({value1:Number(event.target.value)});
+                    
+    
+                    }
+                    
+                    handleOptionChange2(event) {
+    
+                        this.setState({value2:Number(event.target.value)});
+
+                        }
+            
+                    render() {
+    
+    
+        let result = this.state.res;
+    
+        const select = this.state.arr1.map((elem,i) => 
+    
+    <option key={i} value={i}>   {elem}   </option>
+        
+        
+        );
+    
+    
+            
+            
+                return (
+                    
+                    <div>
+                        
+                        <select onChange={this.handleOptionChange1.bind(this)}>
+                            {select}
+                        </select>
+                        <select onChange={this.handleOptionChange2.bind(this)}>
+                            {select}
+                        </select>
+                        <input onChange={this.handleInputChange.bind(this)}
+                        />
+                        <button onClick={this.handleButtonClick.bind(this)}>
+                            kkkkk
+                        </button>
+                        <p>{result}</p>
+    
+                        
+                        
+                
+                    </div>
+                
+                );
+                }
+                        }
+                        
+                        ReactDOM.render(
+                            <App />, document.getElementById('content7')
+                        );
+                    
+                    
+                        </script>
+        <hr>
     
 
+        <h3>Задание 16. Дан следующий массив с вопросами и вариантами ответов:
 
+                this.state = {
+                    test: [
+                        {
+                            question: 'Вопрос 1',
+                            answers: [
+                                'Ответ1',
+                                'Ответ2',
+                                'Ответ3',
+                                'Ответ4',
+                                'Ответ5',
+                            ],
+                            right: 3, //номер правильного ответа
+                        },
+                        {
+                            ...
+                        },
+                        {
+                            ...
+                        },
+                    ]
+                };
+                Реализуйте текст с вопросами и вариантами ответов. Каждый вопрос должен быть в 
+                своем абзаце, а под ним - 5 радиокнопочек, с помощью которых можно выбрать один
+                 из ответов. Если ответ правильный - вопрос должен покраситься в зеленый цвет, 
+                 а если неправильный - в красный.
+                </h3>
+            
+                <div id="content8"></div>
+            
+                <script type="text/babel">
+            
+                    class App extends React.Component {
+                                                
+                            constructor() {
+                    
+                                super();
+                    
+                                this.state = {
+                    test: [
+                        {
+                            question: 'Вопрос 1',
+                            answers: [
+                                'Ответ1',
+                                'Ответ2',
+                                'Ответ3',
+                                'Ответ4',
+                                'Ответ5',
+                            ],
+                            right: 0,
+                        },
+                        {
+                            question: 'Вопрос 2',
+                            answers: [
+                                'Ответ1',
+                                'Ответ2',
+                                'Ответ3',
+                                'Ответ4',
+                                'Ответ5',
+                            ],
+                            right: 2,
+                        },
+                        {
+                            question: 'Вопрос 3',
+                            answers: [
+                                'Ответ1',
+                                'Ответ2',
+                                'Ответ3',
+                                'Ответ4',
+                                'Ответ5',
+                            ],
+                            right: 4,
+                        }
+                        
+                    ],
+                    arr:['','','']
+                };
+                                    
+                            } 
+                    
+                           
+                            handleRadio(event) {
+
+                                this.state.arr[Number(event.target.name)] = Number(event.target.value);
+
+                                this.setState({arr: this.state.arr});
+                                
+                                if(this.state.test[Number(event.target.name)].right === Number(event.target.value)) {
+        // console.log('ok');
+                                    // event.target.classList.remove('red');
+                                    event.target.parentNode.classList.add('green');
+
+
+                                } else {
+                                    event.target.parentNode.classList.add('red');
+
+                                }
+
+                            } 
+
+                            render() {
+            
+            
+            //     let result = this.state.res;
+            
+                const result = this.state.test.map((elem,i) => 
+
+                     {      
+
+                         const ans = elem.answers.map((elem,j) => 
+                         
+                            <p key={j}>
+
+                                <input type="radio"
+
+                                name={i}
+                                value={j}
+                                key={j}
+                                checked={this.state.arr[i] === j}   
+                                onChange={this.handleRadio.bind(this)}
+
+                                />
+                                {elem}
+                                </p>
+                            
+                         );
+            
+                       return <div key={i} value={i}>   
+                       <b> {elem.question}   </b>
+                        {ans}
+                        </div>
+                
+                     }
+                );
+            
             
                     
                     
-
+                        return (
+                            
+                            <div>
+                                
+                               {result}
+                                
+                                
+                        
+                            </div>
+                        
+                        );
+                        }
+                                }
+                                
+                                ReactDOM.render(
+                                    <App />, document.getElementById('content8')
+                                );
+                            
+                            
+                                </script>
+                <hr>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </tbody>
 
