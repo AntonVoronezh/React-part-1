@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://npmcdn.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://npmcdn.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
+    <style>
+        .div {
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    .green {
+        border: 5px solid green;
+    }
+    .red {
+        border: 5px solid red;
+    }
+    </style>
+</head>
+
+<body>
+
+    <h2>
+        Практика по работе с формами в фреймворке React
+    </h2>
+
+    <h3>Задание 9. Дан массив с работниками. У каждого работника есть имя, фамилия, зарплата.
+        Выведите этих работников на экран в виде таблицы. Сделайте так, чтобы работников можно
+        было посортировать по любой колонке этот таблицы.
+
+
+    </h3>
+
+    <div id="content1"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+        constructor() {
+
+            super();
+
+            this.state = {
+
+                arr: [
+
+                    {name: 'Гена', surname: 'Авдеев', salary : 100},
+                    {name: 'Володя', surname: 'Гусин', salary : 400},
+                    {name: 'Андрей', surname: 'Викторов', salary : 200},
+                    {name: 'Боря', surname: 'Билан', salary : 300}
+
+                ]
+
+
+                }
+
+        }
+
+        handleClick(argStr) {
+
+            let result;
+
+            if(argStr === 'name') {
+
+                result =  this.state.arr.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1)
+
+                this.setState({arr: result});
+
+            }
+
+            if(argStr === 'surname') {
+
+                result =  this.state.arr.sort((a, b) => a.surname.toLowerCase() < b.surname.toLowerCase() ? -1 : 1)
+
+                this.setState({arr: result});
+
+            }
+
+            if(argStr === 'salary') {
+
+                result =  this.state.arr.sort((a, b) => a.salary - b.salary)
+
+                this.setState({arr: result});
+
+            }
+            
+
+        }
+       
+
+        render() {
+
+            const head = <tr>
+                        <td onClick={this.handleClick.bind(this, 'name')}
+                        >Имя</td>
+                        <td onClick={this.handleClick.bind(this, 'surname')}
+                        >Фамилия</td>
+                        <td onClick={this.handleClick.bind(this, 'salary')}
+                        >Зарплата</td>
+                        </tr>;
+
+            const result = this.state.arr.map((elem,i) => 
+
+            <tr key={i}>
+
+                <td>{elem.name}</td>
+                <td>{elem.surname}</td>
+                <td>{elem.salary}</td>
+                  
+            </tr>
+
+            );
+
+            return (
+                
+                <div>
+                     
+                    <table>
+                        <tbody>
+                                {head}
+                            {result}
+                        </tbody>
+                    </table>
+
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content1')
+    );
+
+
+    </script>
+    <hr>
+
+
+    <h3>Задание 10. Даны два селекта. С помощью первого селекта можно выбрать
+        язык пользователя (русский или английский). Если в первом селекте выбран
+        русский язык, то во втором селекте должен появится список дней недели по-русски.
+        А если в первом селекте выбран английский - то и во втором дни недели будут по-английски.
+
+
+    </h3>
+
+    <div id="content2"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+    
+            constructor() {
+    
+                super();
+    
+                this.state = {
+                    value: 0,
+                    arrLang: ['ru', 'en'],
+                    arrDays: [
+                        ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'],
+                        ['mon', 'twe', 'wen', 'fes', 'fr', 'sat', 'san']
+                    ]
+    
+                    
+                    }
+    
+            } 
+    
+            handleSelectChange(event) {
+
+                let lang;
+
+                if(event.target.value === 'ru') {
+                    lang = 0;
+                }
+                if(event.target.value === 'en') {
+                    lang = 1;
+                }
+
+                this.setState({value: lang});
+
+            }
+           
+    
+            render() {
+    
+                  
+                const resultLang = this.state.arrLang.map((elem,i) => 
+    
+                <option key={i} value={elem}>
+    
+                        {elem}
+                      
+                </option>
+    
+                );
+
+                const resultDays = this.state.arrDays[this.state.value].map((elem,i) => 
+    
+                <option key={i} >
+
+                        {elem}
+                    
+                </option>
+
+                );
+                
+                return (
+                    
+                    <div>
+                        <select onChange={this.handleSelectChange.bind(this)}>
+                            {resultLang}
+                        </select>
+                        <select>
+                            {resultDays}
+                        </select>
+    
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content2')
+        );
+    
+    
+        </script>
+    <hr>
+
+    <h3>Задание 11. Дан инпут. В него вводится строка. Сделайте так, чтобы если
+        длина введенной строки от 4 до 9 символов - граница инпута была зеленой,
+        в противном случае - красной. Инпут должен проверять свое содержимое по мере ввода.
+
+
+    </h3>
+
+    <div id="content3"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+            
+                    constructor() {
+            
+                        super();
+            
+                        this.state = {
+                            value: '',
+                           
+                            }
+            
+                    } 
+            
+                    handleInputChange(event) {
+
+                        this.setState({value: event.target.value});
+       
+                        if(event.target.value.length > 3 && event.target.value.length < 9 ) {
+                            event.target.classList.remove('red');
+                            event.target.classList.add('green');
+                        }
+                        else {
+                            event.target.classList.remove('green');
+                            event.target.classList.add('red');
+                        }
+        
+                    }
+                   
+            
+                    render() {
+            
+                        return (
+                            
+                            <div>
+
+                                <input onChange={this.handleInputChange.bind(this)} />
+            
+                            </div>
+            
+                        );
+                    }
+                }
+                
+                ReactDOM.render(
+                    <App />, document.getElementById('content3')
+                );
+            
+            
+                </script>
+    <hr>
+
+
+    <h3>Задание 12. Дан массив с работниками. У каждого работника есть имя, фамилия,
+        зарплата, пол. Выведите этих работников на экран в виде таблицы. Под таблице
+        сделайте форму, с помощью которой в таблицу можно будет добавить нового работника.
+        В этой форме имя, фамилия, зарплата будут инпутами, а пол - селектом, в котором можно
+        будет выбрать один из двух вариантов.
+
+    </h3>
+
+    <div id="content4"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                        
+            constructor() {
+    
+                super();
+    
+                this.state = {
+                    value: ['name', 'surname', 'salary', 'sex'],
+                    arr: [
+
+                    {name: 'Гена', surname: 'Авдеев', salary : 100, sex:'м'},
+                    {name: 'Нина', surname: 'Гусина', salary : 400, sex:'ж'},
+                    {name: 'Андрей', surname: 'Викторов', salary : 200, sex:'м'},
+                    {name: 'Боря', surname: 'Билан', salary : 300, sex:'м'}
+
+                    ]
+                    
+                    }
+    
+            } 
+    
+            handleInputChange1(event) {
+
+                    this.state.value[0] = event.target.value;
+                    this.setState({value:this.state.value});
+
+
+            }
+            
+            handleInputChange2(event) {
+
+                    this.state.value[1] = event.target.value;
+                    this.setState({value:this.state.value});
+
+
+            }
+            
+            handleInputChange3(event) {
+
+                    this.state.value[2] = event.target.value;
+                    this.setState({value:this.state.value});
+
+
+            }
+            
+            handleInputChange4(event) {
+
+                    this.state.value[3] = event.target.value;
+                    this.setState({value:this.state.value});
+// console.log(event.target.value);
+            }
+
+            handleFormChange(event) {
+
+                event.preventDefault();
+
+                const person = {
+                    name:this.state.value[0],
+                    surname:this.state.value[1],
+                    salary:this.state.value[2],
+                    sex:this.state.value[3]
+                };
+                
+                this.state.arr.push(person);
+
+                this.setState({arr:this.state.arr});
+
+            }
+            
+    
+            render() {
+
+            const form = <form onSubmit={this.handleFormChange.bind(this)}>
+            <input type="text" value={this.state.value[0]} onChange={this.handleInputChange1.bind(this)} />
+            <input type="text" value={this.state.value[1]} onChange={this.handleInputChange2.bind(this)}  />
+            <input type="text" value={this.state.value[2]} onChange={this.handleInputChange3.bind(this)}  />
+            <select onChange={this.handleInputChange4.bind(this)}>
+                <option value="м">м</option>
+                <option value="ж">ж</option>
+            </select>
+            <input type="submit" />
+            </form>;
+
+const result = this.state.arr.map((elem,i) => 
+
+<tr key={i}>
+
+    <td>{elem.name}</td>
+    <td>{elem.surname}</td>
+    <td>{elem.salary}</td>
+    <td>{elem.sex}</td>
+      
+</tr>
+
+);
+
+return (
+    
+    <div>
+         
+        <table>
+            <tbody>
+                {result}
+                
+            </tbody>
+        </table>
+        {form}
+
+    </div>
+
+);
+}
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content4')
+        );
+    
+    
+        </script>
+    <hr>
+
+
+
+    <h3>Задание 13. Дан массив с работниками. У каждого работника есть имя, фамилия, зарплата.
+        Выведите этих работников на экран в виде таблицы. Причем выведите только первых 10
+        работников, а над таблицей сделайте ссылки: 1, 2, 3, 4 и так далее. По нажатию на
+        каждую ссылку в таблице будет отображаться заданный десяток работников. Ссылки
+        над таблицей должны сгенерироваться автоматически исходя из количества работников.
+
+    </h3>
+
+    <div id="content5"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                            
+                constructor() {
+        
+                    super();
+        
+                    this.state = {
+                        value:0,
+                        arrChunk:[],
+                        arr: [
+    
+                        {name: 'Гена1', surname: 'Авдеев', salary : 100},
+                        {name: 'Нина2', surname: 'Гусина', salary : 400},
+                        {name: 'Андрей3', surname: 'Викторов', salary : 200},
+                        {name: 'Боря4', surname: 'Билан', salary : 300},
+                        {name: 'Гена5', surname: 'Авдеев', salary : 100},
+                        {name: 'Нина6', surname: 'Гусина', salary : 400},
+                        {name: 'Андрей7', surname: 'Викторов', salary : 200},
+                        {name: 'Боря8', surname: 'Билан', salary : 300},
+                        {name: 'Гена9', surname: 'Авдеев', salary : 100},
+                        {name: 'Нина10', surname: 'Гусина', salary : 400},
+                        {name: 'Андрей11', surname: 'Викторов', salary : 200},
+                        {name: 'Боря12', surname: 'Билан', salary : 300},
+                        {name: 'Гена13', surname: 'Авдеев', salary : 100},
+                        {name: 'Нина14', surname: 'Гусина', salary : 400},
+                        {name: 'Андрей15', surname: 'Викторов', salary : 200},
+                        {name: 'Боря16', surname: 'Билан', salary : 300},
+                        {name: 'Гена17', surname: 'Авдеев', salary : 100},
+                        {name: 'Нина18', surname: 'Гусина', salary : 400},
+                        {name: 'Андрей19', surname: 'Викторов', salary : 200},
+                        {name: 'Боря20', surname: 'Билан', salary : 300},
+                        {name: 'Гена21', surname: 'Авдеев', salary : 100},
+                        {name: 'Нина22', surname: 'Гусина', salary : 400},
+                        {name: 'Андрей23', surname: 'Викторов', salary : 200},
+                        {name: 'Боря24', surname: 'Билан', salary : 300},
+                        {name: 'Гена25', surname: 'Авдеев', salary : 100},
+                        {name: 'Нина26', surname: 'Гусина', salary : 400},
+                        {name: 'Андрей27', surname: 'Викторов', salary : 200},
+                        {name: 'Боря28', surname: 'Билан', salary : 300},
+                        {name: 'Боря29', surname: 'Билан', salary : 300},
+                        {name: 'Боря30', surname: 'Билан', salary : 300},
+                        {name: 'Боря31', surname: 'Билан', salary : 300}
+    
+                        ]
+                        
+                        }
+
+                        
+                        this.makeChunk(6);
+                } 
+        
+               
+               makeChunk(argNum) {
+
+                while(this.state.arr.length > 0) {
+
+                    const chunk = this.state.arr.splice(0, argNum);
+
+                    this.state.arrChunk.push([chunk]);
+
+                    this.setState({arrChunk:this.state.arrChunk});
+
+                }
+
+               }
+
+               handleClick(argNum) {
+
+                this.setState({value:+argNum});
+
+               }
+                
+        
+                render() {
+
+
+    const result = this.state.arrChunk[this.state.value][0].map((elem,i) => 
+
+    <tr key={i}>
+    
+        <td>{elem.name}</td>
+        <td>{elem.surname}</td>
+        <td>{elem.salary}</td>
+          
+    </tr>
+    
+    );
+    
+    const nav =  this.state.arrChunk.map((elem,i) => 
+    
+    <div key={i} onClick={this.handleClick.bind(this, i)}>   {i}   </div>
+    
+    
+    );
+
+
+    return (
+        
+        <div>
+            {nav}
+             <br/>
+            <table>
+                <tbody>
+                    {result}
+                    
+                </tbody>
+            </table>
+            
+            
+    
+        </div>
+    
+    );
+    }
+            }
+            
+            ReactDOM.render(
+                <App />, document.getElementById('content5')
+            );
+        
+        
+            </script>
+    <hr>
+
+
+    <h3>Задание 14. Дан селект. Изначально он пустой. Дан инпут и кнопка.
+        В этот инпут вводится название города. По нажатию на кнопку этот город
+        должен попасть в селект. Пользователь нашего скрипта добавляет несколько
+        городов в селект, затем выбирает один из добавленных городов - и этот город
+        должен отобразиться на экране в каком-нибудь абзаце.
+
+    </h3>
+
+    <div id="content6"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                                    
+                constructor() {
+        
+                    super();
+        
+                    this.state = {
+                        num:0,
+                        value:'',
+                        arr: []
+                        
+                        }
+                        
+                } 
+        
+                handleInputChange(event) {
+
+                this.setState({value:event.target.value});
+
+                }
+
+
+                handleButtonClick(){
+
+                this.state.arr.push(this.state.value);
+
+                this.setState({arr:this.state.arr});
+                    
+                }
+
+                handleOptionChange(event) {
+
+                this.setState({num:Number(event.target.value)});
+
+                }
+                
+        
+                render() {
+
+
+    let result = this.state.arr[this.state.num];
+
+    const select = this.state.arr.map((elem,i) => 
+
+<option key={i} value={i}>   {elem}   </option>
+    
+    
+    );
+
+
+        
+        
+            return (
+                
+                <div>
+                    
+                    <select onChange={this.handleOptionChange.bind(this)}>
+                        {select}
+                    </select>
+                    <input onChange={this.handleInputChange.bind(this)}
+                    />
+                    <button onClick={this.handleButtonClick.bind(this)}>
+                        kkkkk
+                    </button>
+                    <p>{result}</p>
+
+                    
+                    
+            
+                </div>
+            
+            );
+            }
+                    }
+                    
+                    ReactDOM.render(
+                        <App />, document.getElementById('content6')
+                    );
+                
+                
+                    </script>
+    <hr>
+
+
+    <h3>Задание 15. Реализуйте калькулятор валют. Как он работает: дан инпут, 
+        в который вводится сумма и даны два селекта - в первом выбирается из какой валюты, 
+        а во втором - в какую. Дана также кнопка. По нажатию на эту кнопку в абзац должна 
+        вывестись сумма в выбранной валюте.
+        </h3>
+    
+        <div id="content7"></div>
+    
+        <script type="text/babel">
+    
+            class App extends React.Component {
+                                        
+                    constructor() {
+            
+                        super();
+            
+                        this.state = {
+                            value1:0,
+                            value2:0,
+                            inp:0,
+                            arr1: ['rub', 'funt', 'doll', 'fr', 'yen'],
+                            res:0
+                            
+                            }
+                            
+                    } 
+            
+                    handleInputChange(event) {
+    
+                    this.setState({inp:Number(event.target.value)});
+    
+                    }
+    
+    
+                    handleButtonClick(){
+    
+                        const tabl = [
+                            [1,0.9,0.8,0.7,0.5],
+                            [1.1,1,1.8,1.2,0.9],
+                            [1.2,0.9,1,1.1,0.5],
+                            [1.7,2.1,0.6,1,0.95]
+                            [1.1,0.68,0.79,1.2,1]
+                        ];
+
+                        const out = tabl[this.state.value1][this.state.value2] * this.state.inp;
+                        
+                        this.setState({res:out});
+
+                    }
+    
+                    handleOptionChange1(event) {
+    
+                        this.setState({value1:Number(event.target.value)});
+                    
+    
+                    }
+                    
+                    handleOptionChange2(event) {
+    
+                        this.setState({value2:Number(event.target.value)});
+
+                        }
+            
+                    render() {
+    
+    
+        let result = this.state.res;
+    
+        const select = this.state.arr1.map((elem,i) => 
+    
+    <option key={i} value={i}>   {elem}   </option>
+        
+        
+        );
+    
+    
+            
+            
+                return (
+                    
+                    <div>
+                        
+                        <select onChange={this.handleOptionChange1.bind(this)}>
+                            {select}
+                        </select>
+                        <select onChange={this.handleOptionChange2.bind(this)}>
+                            {select}
+                        </select>
+                        <input onChange={this.handleInputChange.bind(this)}
+                        />
+                        <button onClick={this.handleButtonClick.bind(this)}>
+                            kkkkk
+                        </button>
+                        <p>{result}</p>
+    
+                        
+                        
+                
+                    </div>
+                
+                );
+                }
+                        }
+                        
+                        ReactDOM.render(
+                            <App />, document.getElementById('content7')
+                        );
+                    
+                    
+                        </script>
+        <hr>
+    
+
+        <h3>Задание 16. Дан следующий массив с вопросами и вариантами ответов:
+
+                this.state = {
+                    test: [
+                        {
+                            question: 'Вопрос 1',
+                            answers: [
+                                'Ответ1',
+                                'Ответ2',
+                                'Ответ3',
+                                'Ответ4',
+                                'Ответ5',
+                            ],
+                            right: 3, //номер правильного ответа
+                        },
+                        {
+                            ...
+                        },
+                        {
+                            ...
+                        },
+                    ]
+                };
+                Реализуйте текст с вопросами и вариантами ответов. Каждый вопрос должен быть в 
+                своем абзаце, а под ним - 5 радиокнопочек, с помощью которых можно выбрать один
+                 из ответов. Если ответ правильный - вопрос должен покраситься в зеленый цвет, 
+                 а если неправильный - в красный.
+                </h3>
+            
+                <div id="content8"></div>
+            
+                <script type="text/babel">
+            
+                    class App extends React.Component {
+                                                
+                            constructor() {
+                    
+                                super();
+                    
+                                this.state = {
+                    test: [
+                        {
+                            question: 'Вопрос 1',
+                            answers: [
+                                'Ответ1',
+                                'Ответ2',
+                                'Ответ3',
+                                'Ответ4',
+                                'Ответ5',
+                            ],
+                            right: 0,
+                        },
+                        {
+                            question: 'Вопрос 2',
+                            answers: [
+                                'Ответ1',
+                                'Ответ2',
+                                'Ответ3',
+                                'Ответ4',
+                                'Ответ5',
+                            ],
+                            right: 2,
+                        },
+                        {
+                            question: 'Вопрос 3',
+                            answers: [
+                                'Ответ1',
+                                'Ответ2',
+                                'Ответ3',
+                                'Ответ4',
+                                'Ответ5',
+                            ],
+                            right: 4,
+                        }
+                        
+                    ],
+                    arr:['','','']
+                };
+                                    
+                            } 
+                    
+                           
+                            handleRadio(event) {
+
+                                this.state.arr[Number(event.target.name)] = Number(event.target.value);
+
+                                this.setState({arr: this.state.arr});
+                                
+                                if(this.state.test[Number(event.target.name)].right === Number(event.target.value)) {
+        // console.log('ok');
+                                    // event.target.classList.remove('red');
+                                    event.target.parentNode.classList.add('green');
+
+
+                                } else {
+                                    event.target.parentNode.classList.add('red');
+
+                                }
+
+                            } 
+
+                            render() {
+            
+            
+            //     let result = this.state.res;
+            
+                const result = this.state.test.map((elem,i) => 
+
+                     {      
+
+                         const ans = elem.answers.map((elem,j) => 
+                         
+                            <p key={j}>
+
+                                <input type="radio"
+
+                                name={i}
+                                value={j}
+                                key={j}
+                                checked={this.state.arr[i] === j}   
+                                onChange={this.handleRadio.bind(this)}
+
+                                />
+                                {elem}
+                                </p>
+                            
+                         );
+            
+                       return <div key={i} value={i}>   
+                       <b> {elem.question}   </b>
+                        {ans}
+                        </div>
+                
+                     }
+                );
+            
+            
+                    
+                    
+                        return (
+                            
+                            <div>
+                                
+                               {result}
+                                
+                                
+                        
+                            </div>
+                        
+                        );
+                        }
+                                }
+                                
+                                ReactDOM.render(
+                                    <App />, document.getElementById('content8')
+                                );
+                            
+                            
+                                </script>
+                <hr>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </tbody>
+
+</html>
