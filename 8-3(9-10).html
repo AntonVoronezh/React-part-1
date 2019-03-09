@@ -438,6 +438,7 @@ return (
     <hr>
 
 
+
     <h3>Задание 13. Дан массив с работниками. У каждого работника есть имя, фамилия, зарплата.
         Выведите этих работников на экран в виде таблицы. Причем выведите только первых 10
         работников, а над таблицей сделайте ссылки: 1, 2, 3, 4 и так далее. По нажатию на
@@ -502,7 +503,25 @@ return (
                 } 
         
                
+               makeChunk(argNum) {
 
+                while(this.state.arr.length > 0) {
+
+                    const chunk = this.state.arr.splice(0, argNum);
+
+                    this.state.arrChunk.push([chunk]);
+
+                    this.setState({arrChunk:this.state.arrChunk});
+
+                }
+
+               }
+
+               handleClick(argNum) {
+
+                this.setState({value:+argNum});
+
+               }
                 
 
 
