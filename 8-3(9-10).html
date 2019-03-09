@@ -77,6 +77,15 @@
 
             }
 
+            if(argStr === 'surname') {
+
+                result =  this.state.arr.sort((a, b) => a.surname.toLowerCase() < b.surname.toLowerCase() ? -1 : 1)
+
+                this.setState({arr: result});
+
+            }
+
+
 
                
 
