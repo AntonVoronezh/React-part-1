@@ -523,7 +523,28 @@ return (
 
                }
                 
+        
+                render() {
 
+
+    const result = this.state.arrChunk[this.state.value][0].map((elem,i) => 
+
+    <tr key={i}>
+    
+        <td>{elem.name}</td>
+        <td>{elem.surname}</td>
+        <td>{elem.salary}</td>
+          
+    </tr>
+    
+    );
+    
+    const nav =  this.state.arrChunk.map((elem,i) => 
+    
+    <div key={i} onClick={this.handleClick.bind(this, i)}>   {i}   </div>
+    
+    
+    );
 
 
 
