@@ -216,7 +216,31 @@
 
                 );
                 
-  
+                return (
+                    
+                    <div>
+                        <select onChange={this.handleSelectChange.bind(this)}>
+                            {resultLang}
+                        </select>
+                        <select>
+                            {resultDays}
+                        </select>
+    
+                    </div>
+    
+                );
+            }
+        }
+        
+        ReactDOM.render(
+            <App />, document.getElementById('content2')
+        );
+    
+    
+        </script>
+    <hr>
+
+
                
 
                 
