@@ -385,7 +385,31 @@
             }
             
     
+            render() {
 
+            const form = <form onSubmit={this.handleFormChange.bind(this)}>
+            <input type="text" value={this.state.value[0]} onChange={this.handleInputChange1.bind(this)} />
+            <input type="text" value={this.state.value[1]} onChange={this.handleInputChange2.bind(this)}  />
+            <input type="text" value={this.state.value[2]} onChange={this.handleInputChange3.bind(this)}  />
+            <select onChange={this.handleInputChange4.bind(this)}>
+                <option value="м">м</option>
+                <option value="ж">ж</option>
+            </select>
+            <input type="submit" />
+            </form>;
+
+const result = this.state.arr.map((elem,i) => 
+
+<tr key={i}>
+
+    <td>{elem.name}</td>
+    <td>{elem.surname}</td>
+    <td>{elem.salary}</td>
+    <td>{elem.sex}</td>
+      
+</tr>
+
+);
 
 
 
