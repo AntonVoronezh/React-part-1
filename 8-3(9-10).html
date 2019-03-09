@@ -97,6 +97,30 @@
         }
        
 
+        render() {
+
+            const head = <tr>
+                        <td onClick={this.handleClick.bind(this, 'name')}
+                        >Имя</td>
+                        <td onClick={this.handleClick.bind(this, 'surname')}
+                        >Фамилия</td>
+                        <td onClick={this.handleClick.bind(this, 'salary')}
+                        >Зарплата</td>
+                        </tr>;
+
+            const result = this.state.arr.map((elem,i) => 
+
+            <tr key={i}>
+
+                <td>{elem.name}</td>
+                <td>{elem.surname}</td>
+                <td>{elem.salary}</td>
+                  
+            </tr>
+
+            );
+
+
                
 
                 
