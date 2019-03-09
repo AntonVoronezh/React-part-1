@@ -177,7 +177,22 @@
     
             } 
     
+            handleSelectChange(event) {
 
+                let lang;
+
+                if(event.target.value === 'ru') {
+                    lang = 0;
+                }
+                if(event.target.value === 'en') {
+                    lang = 1;
+                }
+
+                this.setState({value: lang});
+
+            }
+           
+    
                
 
                 
