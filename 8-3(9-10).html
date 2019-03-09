@@ -439,7 +439,69 @@ return (
 
 
 
+    <h3>Задание 13. Дан массив с работниками. У каждого работника есть имя, фамилия, зарплата.
+        Выведите этих работников на экран в виде таблицы. Причем выведите только первых 10
+        работников, а над таблицей сделайте ссылки: 1, 2, 3, 4 и так далее. По нажатию на
+        каждую ссылку в таблице будет отображаться заданный десяток работников. Ссылки
+        над таблицей должны сгенерироваться автоматически исходя из количества работников.
 
+    </h3>
+
+    <div id="content5"></div>
+
+    <script type="text/babel">
+
+        class App extends React.Component {
+                            
+                constructor() {
+        
+                    super();
+        
+                    this.state = {
+                        value:0,
+                        arrChunk:[],
+                        arr: [
+    
+                        {name: 'Гена1', surname: 'Авдеев', salary : 100},
+                        {name: 'Нина2', surname: 'Гусина', salary : 400},
+                        {name: 'Андрей3', surname: 'Викторов', salary : 200},
+                        {name: 'Боря4', surname: 'Билан', salary : 300},
+                        {name: 'Гена5', surname: 'Авдеев', salary : 100},
+                        {name: 'Нина6', surname: 'Гусина', salary : 400},
+                        {name: 'Андрей7', surname: 'Викторов', salary : 200},
+                        {name: 'Боря8', surname: 'Билан', salary : 300},
+                        {name: 'Гена9', surname: 'Авдеев', salary : 100},
+                        {name: 'Нина10', surname: 'Гусина', salary : 400},
+                        {name: 'Андрей11', surname: 'Викторов', salary : 200},
+                        {name: 'Боря12', surname: 'Билан', salary : 300},
+                        {name: 'Гена13', surname: 'Авдеев', salary : 100},
+                        {name: 'Нина14', surname: 'Гусина', salary : 400},
+                        {name: 'Андрей15', surname: 'Викторов', salary : 200},
+                        {name: 'Боря16', surname: 'Билан', salary : 300},
+                        {name: 'Гена17', surname: 'Авдеев', salary : 100},
+                        {name: 'Нина18', surname: 'Гусина', salary : 400},
+                        {name: 'Андрей19', surname: 'Викторов', salary : 200},
+                        {name: 'Боря20', surname: 'Билан', salary : 300},
+                        {name: 'Гена21', surname: 'Авдеев', salary : 100},
+                        {name: 'Нина22', surname: 'Гусина', salary : 400},
+                        {name: 'Андрей23', surname: 'Викторов', salary : 200},
+                        {name: 'Боря24', surname: 'Билан', salary : 300},
+                        {name: 'Гена25', surname: 'Авдеев', salary : 100},
+                        {name: 'Нина26', surname: 'Гусина', salary : 400},
+                        {name: 'Андрей27', surname: 'Викторов', salary : 200},
+                        {name: 'Боря28', surname: 'Билан', salary : 300},
+                        {name: 'Боря29', surname: 'Билан', salary : 300},
+                        {name: 'Боря30', surname: 'Билан', salary : 300},
+                        {name: 'Боря31', surname: 'Билан', salary : 300}
+    
+                        ]
+                        
+                        }
+
+                        
+                        this.makeChunk(6);
+                } 
+        
                
 
                 
