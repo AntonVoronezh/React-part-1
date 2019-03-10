@@ -467,6 +467,116 @@
     <h2>На редактирование</h2>
 
 
+    <h3>Задание 6. Дан массив. Выведите его элементы в виде списка ul. Сделайте так,
+        чтобы элементы массива выводились в отдельном компоненте. Рядом с текстом li
+        сделайте ссылку 'редактировать'. По нажатию на эту ссылку она должна, а взамен
+        должен появиться инпут, с помощью которого можно будет поредактировать текст li.
+        По потери фокуса из инпута он должен исчезнуть, а взамен должна вернуться
+        ссылка 'редактировать'.
+
+    </h3>
+
+    <div id="content6"></div>
+
+    <script type="text/babel">
+
+        class Elem extends React.Component {
+                
+                        constructor() {
+                
+                        super();
+                
+                        }
+                
+                        render() {
+                            return (
+                                <li>
+                                    {this.props.elem}
+                                    <a onClick={this.props.editElem.bind(null, this.props.index)}>редактировать</a>
+                                </li>
+                            );
+                        }
+                        
+                    };
+
+                    class Input extends React.Component {
+                
+                        constructor() {
+                
+                            super();
+                
+                            this.state = {value:''};
+
+                        }
+
+                        handleInputChange(event) {
+
+                            this.state.value = event.target.value;
+
+                            this.setState({value:this.state.value});
+
+                            console.log(this.state.value);
+                            
+
+                        }
+                
+                        render() {
+                            return (
+                                <li>
+                                    <input 
+                                        value={this.state.value} 
+                                        // onChange={this.props.handleInputChange.bind(null, this.state.value)}
+                                        onChange={this.handleInputChange.bind(this)}
+                                        onBlur={this.props.handleBlur.bind(null, this.props.index, this.state.value)}
+                                    />
+                                    
+                                </li>
+                            );
+                        }
+                        
+                    };
+                
+                
+                        class App extends React.Component {
+                
+                        constructor() {
+                
+                            super();
+                
+                            this.state = {
+                                value:'',
+                                edit:[false,false,false,false,false,false],
+                                arr: [1,2,3,4,5,6]
+                            };
+
+                        }
+
+            
+                        editElem(argNum) {
+
+                            this.state.edit[argNum] = !this.state.edit[argNum];
+
+                            this.setState({edit:this.state.edit});
+
+                        }
+
+                        handleBlur(argNum, argStr){
+
+                            this.state.edit[argNum] = !this.state.edit[argNum];
+
+                            this.setState({edit:this.state.edit});
+                            
+                            this.state.arr[argNum] = argStr;
+
+                            this.setState({arr:this.state.arr});
+
+                        } 
+                
+                
+                        render() {
+                
+
+
 
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
