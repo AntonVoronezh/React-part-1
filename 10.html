@@ -291,7 +291,28 @@
 
     <script type="text/babel">
 
- 
+        class Table extends React.Component {
+    
+            constructor() {
+    
+            super();
+    
+            }
+    
+            render() {
+                return (
+                    <tr>
+                        <td>{this.props.name}</td>
+                        <td>{this.props.surname}</td>
+                        <td>{this.props.age}</td>
+                        <td><a onClick={this.props.showMessage.bind(null, this.props.index)}>+++++</a> </td>
+
+                    </tr>
+                );
+            }
+            
+        };
+    
     
  
 
