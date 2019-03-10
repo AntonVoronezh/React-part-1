@@ -191,7 +191,39 @@
         </script>
     <hr>
 
+    <h3>Задание 3. Модифицируйте предыдущую задачу. Пусть теперь showMessage
+        параметром принимает строку и выводит ее на экран. Сделайте так, чтобы
+        по клику на ссылку выводилось имя соответствующего юзера.
 
+    </h3>
+
+    <div id="content3"></div>
+
+    <script type="text/babel">
+
+        class Table extends React.Component {
+            
+                    constructor() {
+            
+                    super();
+            
+                    }
+            
+                    render() {
+                        return (
+                            <tr>
+                                <td>{this.props.name}</td>
+                                <td>{this.props.surname}</td>
+                                <td>{this.props.age}</td>
+                                <td><a onClick={this.props.showMessage.bind(null, this.props.name)}>+++++</a> </td>
+        
+                            </tr>
+                        );
+                    }
+                    
+                };
+            
+            
 
     
  
