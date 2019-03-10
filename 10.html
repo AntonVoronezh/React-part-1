@@ -248,6 +248,30 @@
                     }
             
             
+                    render() {
+            
+                        const list = this.state.users.map((elem,i) => 
+            
+                            <Table 
+                                key={i} 
+                                name={elem.name} 
+                                surname={elem.surname} 
+                                age={elem.age}
+                                showMessage={this.showMessage.bind(this)}
+                            />                
+            
+                        );
+            
+                        return (
+                            
+                            <div>
+                                <table><tbody>{list}</tbody></table>
+                            </div>
+            
+                        );
+                    }
+                }
+                
 
     
  
