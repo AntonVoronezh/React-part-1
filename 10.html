@@ -337,7 +337,22 @@
 
             }
     
-
+    
+            render() {
+    
+                const list = this.state.users.map((elem,i) => 
+    
+                    <Table 
+                        key={i} 
+                        name={elem.name} 
+                        surname={elem.surname} 
+                        age={elem.age}
+                        index={i}
+                        showMessage={this.showMessage.bind(this)}
+                    />                
+    
+                );
+    
 
 
  
