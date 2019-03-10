@@ -575,6 +575,55 @@
                 
                         render() {
                 
+                            const list = this.state.arr.map((elem,i) => {
+
+                                let item;
+
+                                if(!this.state.edit[i]) {
+
+                                    item = <Elem 
+                                    key={i} 
+                                    index={i}
+                                    elem={elem}
+                                    editElem={this.editElem.bind(this)}
+                                    />
+
+                                } else {
+
+                                    item = <Input 
+                                    key={i} 
+                                    index={i}
+                                    elem={elem}
+                                    handleBlur={this.handleBlur.bind(this)}
+                                    />
+
+                                }
+
+                                return item;
+
+                            }
+                
+                
+                
+                            );
+                
+                            return (
+                                
+                                <div>
+                                    <ul>{list}</ul>
+                                </div>
+                
+                            );
+                        }
+                    }
+                    
+                    ReactDOM.render(
+                        <App />, document.getElementById('content6')
+                    );
+                
+                
+                    </script>
+    <hr>
 
 
 
