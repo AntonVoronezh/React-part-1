@@ -102,6 +102,38 @@
     <hr>
 
 
+    <h3>Задание 2. Модифицируйте предыдущую задачу. Пусть у компонента-родителя есть метод showMessage,
+        который алертом выводит '!'. Передайте этот метод в компонент-потомок. В таблице с юзерами
+        сделайте еще одну колонку со ссылками. Привяжите к клику по этим ссылкам переданный метод.
+
+    </h3>
+
+    <div id="content2"></div>
+
+    <script type="text/babel">
+
+        class Table extends React.Component {
+    
+            constructor() {
+    
+            super();
+    
+            }
+    
+            render() {
+                return (
+                    <tr>
+                        <td>{this.props.name}</td>
+                        <td>{this.props.surname}</td>
+                        <td>{this.props.age}</td>
+                        <td onClick={this.props.showMessage}>======</td>
+
+                    </tr>
+                );
+            }
+            
+        };
+    
 
 
     
