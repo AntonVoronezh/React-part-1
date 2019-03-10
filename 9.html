@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://npmcdn.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://npmcdn.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
+</head>
+
+<body>
+
+    <h2>
+        Задачи на работу с компонентами в React
+    </h2>
+
+    <h3>Задание 1. Пусть в стейте хранится массив с юзерами. 
+        У каждого юзера есть имя, фамилия и возраст. Выведите всех юзеров
+         на экран с помощью цикла. Сделайте так, чтобы отображением юзера
+         на экран занимался отдельный компонент.
+
+
+    </h3>
+
+    <div id="content1"></div>
+
+    <script type="text/babel">
+
+    class User extends React.Component {
+
+        constructor() {
+
+        super();
+
+        }
+
+        render() {
+            return (
+                <div>
+                    имя - {this.props.name}, 
+                    фам - {this.props.surname}, 
+                    возр - {this.props.age}
+                </div>
+            );
+        }
+        
+    };
+
+
+        class App extends React.Component {
+
+        constructor() {
+
+            super();
+
+            this.state = {
+                users: [
+                    {name:'ddddd', surname:'gdh', age:'7'},
+                    {name:'dfgd', surname:'fsdgfj', age:'8'},
+                    {name:'hfgh', surname:'ghykjcvbn', age:'4'},
+                    {name:'6uyukhjk', surname:'rrr', age:'5'}
+                ]
+            };
+
+        }
+
+
+        render() {
+
+            const list = this.state.users.map((elem,i) => 
+
+            <li key={i}>
+                <User name={elem.name} surname={elem.surname} age={elem.age} />                
+            </li>
+
+            );
+
+            return (
+                
+                <div>
+                    <ul>{list}</ul>
+                </div>
+
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content1')
+    );
+
+
+    </script>
+    <hr>
+
+    
+    
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+
+</html>
