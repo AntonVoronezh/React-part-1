@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://npmcdn.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://npmcdn.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
+</head>
+
+<body>
+
+    <h2>
+        Задачи на продвинутую работу с компонентами в React
+    </h2>
+
+    <h2>На методы</h2>
+
+    <h3>Задание 1. Пусть в стейте хранится массив с юзерами. У каждого юзера есть имя, фамилия и возраст.
+        Выведите всех юзеров на экран в виде таблицы. Пусть отображением юзера на экран занимается
+        отдельный компонент.
+
+    </h3>
+
+    <div id="content1"></div>
+
+    <script type="text/babel">
+
+        class Table extends React.Component {
+
+        constructor() {
+
+        super();
+
+        }
+
+        render() {
+            return (
+                <tr>
+                    <td>{this.props.name}</td>
+                    <td>{this.props.surname}</td>
+                    <td>{this.props.age}</td>
+                </tr>
+            );
+        }
+        
+    };
+
+
+
+    
+ 
+
+
+ 
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+
+</html>
