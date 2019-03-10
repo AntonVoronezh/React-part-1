@@ -70,7 +70,24 @@
         }
 
 
+        render() {
 
+            const list = this.state.users.map((elem,i) => 
+
+            <li key={i}>
+                <User name={elem.name} surname={elem.surname} age={elem.age} />                
+            </li>
+
+            );
+
+            return (
+                
+                <div>
+                    <ul>{list}</ul>
+                </div>
+
+            );
+        }
     }
     
     ReactDOM.render(
