@@ -504,7 +504,38 @@ ReactDOM.render(
                         </h3>
                         
                         <div id="content10"></div>
+                
+                        <script type="text/babel">
+                        
+                            class Table extends React.Component {
+                        
+                            constructor() {
+                        
+                            super();
+                        
+                            }
+                        
+                            render() {
+                                return (
+                                    <tr>
+                                        <td>{this.props.name}</td>
+                                        <td>{this.props.price}</td>
+                                        <td>{this.props.count}</td>
+                                        <td>{this.props.count * this.props.price}</td>
+                                        <td><input 
+                                            type="checkbox"
+                                            checked={this.props.check} 
+                                            onChange={this.props.handleCheckbox.bind(null, this.props.index)}
+                                            /></td>
+                                        <td><a onClick={this.props.deleteUser.bind(null, this.props.index)}>+++++</a> </td>
+                                    </tr>
+                                );
+                            }
+                            
+                        };
 
+
+                        
    
                         
      
