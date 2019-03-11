@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://npmcdn.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://npmcdn.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
+</head>
+
+<body>
+
+    <h2>
+        Задачи на продвинутую работу с компонентами в React
+    </h2>
+
+  
+<h2>Практика</h2>
+
+
+<h3>Задание 7. Пусть в стейте хранится массив с продуктами. У каждого продукта 
+    есть название, цена и количество. Выведите все продукты на экран в виде таблицы.
+    Сделайте так, чтобы в таблице была колонка, в которой выводится полная стоимость 
+    продукта (цена умножить на количество).
+
+    Пусть отображением продукта на экран занимается отдельный компонент. Сделайте так,
+     чтобы рядом с каждым продуктом была кнопка 'удалить', с помощью которой можно 
+     удалить этот продукт из таблицы.
+
+</h3>
+
+<div id="content7"></div>
+
+<script type="text/babel">
+
+    class Table extends React.Component {
+
+    constructor() {
+
+    super();
+
+    }
+
+    render() {
+        return (
+            <tr>
+                <td>{this.props.name}</td>
+                <td>{this.props.price}</td>
+                <td>{this.props.count}</td>
+                <td>{this.props.count * this.props.price}</td>
+                <td><a onClick={this.props.deleteUser.bind(null, this.props.index)}>+++++</a> </td>
+            </tr>
+        );
+    }
+    
+};
+
+
+    class App extends React.Component {
+
+    constructor() {
+
+        super();
+
+        this.state = {
+            users: [
+                {name:'ddddd', price:50, count:10},
+                {name:'aaaaaa', price:60, count:11},
+                {name:'ffffff', price:70, count:12},
+                {name:'hhhhhh', price:80, count:13}
+
+            ]
+        };
+
+    }
+
+    deleteUser(argNum) {
+
+        this.state.users.splice(argNum, 1);  
+
+        this.setState({users:this.state.users});
+
+    }
+
+
+    render() {
+
+        const list = this.state.users.map((elem,i) => 
+
+        <Table 
+                    key={i} 
+                    name={elem.name} 
+                    price={elem.price} 
+                    count={elem.count}
+                    index={i}
+                    deleteUser={this.deleteUser.bind(this)}
+                />  
+
+        );
+
+        return (
+            
+            <div>
+                <table><tbody>{list}</tbody></table>
+            </div>
+
+        );
+    }
+}
+
+ReactDOM.render(
+    <App />, document.getElementById('content7')
+);
+
+
+</script>
+<hr>
+
+
+<h3>Задание 8. Модифицируйте предыдущую задачу так, чтобы появился еще и один 
+    отдельный компонент для добавления нового продукта в таблицу.
+    
+    </h3>
+    
+    <div id="content8"></div>
+    
+    <script type="text/babel">
+    
+        class Table extends React.Component {
+    
+        constructor() {
+    
+        super();
+    
+        }
+    
+        render() {
+            return (
+                <tr>
+                    <td>{this.props.name}</td>
+                    <td>{this.props.price}</td>
+                    <td>{this.props.count}</td>
+                    <td>{this.props.count * this.props.price}</td>
+                    <td><a onClick={this.props.deleteUser.bind(null, this.props.index)}>+++++</a> </td>
+                </tr>
+            );
+        }
+        
+    };
+
+
+    class AddInTable extends React.Component {
+    
+    constructor() {
+
+    super();
+
+    this.state = {
+                users: {}
+            };
+
+    }
+
+
+    addInObj1(event) {
+
+        this.state.users.name = event.target.value;
+
+        this.setState({users:this.state.users});
+
+    }
+    addInObj2(event) {
+
+        this.state.users.price = +event.target.value;
+
+        this.setState({users:this.state.users});
+
+    }
+    addInObj3(event) {
+
+        this.state.users.count = +event.target.value;
+
+        this.setState({users:this.state.users});
+
+    }
+
+
+    render() {
+        return (
+            <table>
+                <tbody>
+                    <tr>
+                        <td><input onChange={this.addInObj1.bind(this)} /></td>
+                        <td><input onChange={this.addInObj2.bind(this)} /></td>
+                        <td><input onChange={this.addInObj3.bind(this)} /></td>
+                        <td><button onClick={this.props.addInTable.bind(null, this.state.users)}>+++++</button> </td>
+                    </tr>
+                </tbody>
+            </table> 
+        );
+    }
+    
+};
+    
+    
+        class App extends React.Component {
+    
+        constructor() {
+    
+            super();
+    
+            this.state = {
+                users: [
+                    {name:'ddddd', price:50, count:10},
+                    {name:'aaaaaa', price:60, count:11},
+                    {name:'ffffff', price:70, count:12},
+                    {name:'hhhhhh', price:80, count:13}
+    
+                ]
+            };
+    
+        }
+    
+        deleteUser(argNum) {
+    
+            this.state.users.splice(argNum, 1);  
+    
+            this.setState({users:this.state.users});
+    
+        }
+
+        addInTable(argObj) {
+
+            this.state.users.push(argObj);
+
+            this.setState({users:this.state.users});
+            
+        }
+    
+    
+        render() {
+    
+            const list = this.state.users.map((elem,i) => 
+    
+            <Table 
+                        key={i} 
+                        name={elem.name} 
+                        price={elem.price} 
+                        count={elem.count}
+                        index={i}
+                        deleteUser={this.deleteUser.bind(this)}
+                    />  
+    
+            );
+
+            const addNew = <AddInTable 
+                        addInTable={this.addInTable.bind(this)}
+                    />  
+    
+            return (
+                
+                <div>
+                    <table><tbody>{list}</tbody></table>
+                    <br />
+                    {addNew}
+                </div>
+    
+            );
+        }
+    }
+    
+    ReactDOM.render(
+        <App />, document.getElementById('content8')
+    );
+    
+    
+    </script>
+    <hr>
+
+
+    <h3>Задание 9. Модифицируйте предыдущую задачу так, чтобы под таблицей появился еще 
+        и один отдельный компонент, в котором будет выведена полная стоимость всех продуктов.
+            
+            </h3>
+            
+            <div id="content9"></div>
+    
+            <script type="text/babel">
+            
+                class Table extends React.Component {
+            
+                constructor() {
+            
+                super();
+            
+                }
+            
+                render() {
+                    return (
+                        <tr>
+                            <td>{this.props.name}</td>
+                            <td>{this.props.price}</td>
+                            <td>{this.props.count}</td>
+                            <td>{this.props.count * this.props.price}</td>
+                            <td><a onClick={this.props.deleteUser.bind(null, this.props.index)}>+++++</a> </td>
+                        </tr>
+                    );
+                }
+                
+            };
+        
+        
+            class AddInTable extends React.Component {
+            
+            constructor() {
+        
+            super();
+        
+            this.state = {
+                        users: {}
+                    };
+        
+            }
+        
+        
+            addInObj1(event) {
+        
+                this.state.users.name = event.target.value;
+        
+                this.setState({users:this.state.users});
+        
+            }
+            addInObj2(event) {
+        
+                this.state.users.price = +event.target.value;
+        
+                this.setState({users:this.state.users});
+        
+            }
+            addInObj3(event) {
+        
+                this.state.users.count = +event.target.value;
+        
+                this.setState({users:this.state.users});
+        
+            }
+        
+        
+            render() {
+                return (
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><input onChange={this.addInObj1.bind(this)} /></td>
+                                <td><input onChange={this.addInObj2.bind(this)} /></td>
+                                <td><input onChange={this.addInObj3.bind(this)} /></td>
+                                <td><button onClick={this.props.addInTable.bind(null, this.state.users)}>+++++</button> </td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                );
+            }
+            
+        };
+
+
+        class Sum extends React.Component {
+            
+            constructor() {
+        
+                super();
+
+                this.state = {
+
+                            sum:[]
+                        };
+
+               this.getSum();        
+        
+            }
+        
+            
+
+            getSum() {
+
+                // console.log(this.props.obj);
+                
+
+            }
+        
+            render() {
+                const y = this.props.obj;
+
+                return (
+                    <div>
+                       {this.props.obj}
+                    </div>
+                );
+            }
+            
+        };
+            
+            
+                class App extends React.Component {
+            
+                constructor() {
+            
+                    super();
+            
+                    this.state = {
+                        users: [
+                            {name:'ddddd', price:50, count:10},
+                            {name:'aaaaaa', price:60, count:11},
+                            {name:'ffffff', price:70, count:12},
+                            {name:'hhhhhh', price:80, count:13}
+            
+                        ]
+                    };
+            
+                }
+            
+                deleteUser(argNum) {
+            
+                    this.state.users.splice(argNum, 1);  
+            
+                    this.setState({users:this.state.users});
+            
+                }
+        
+                addInTable(argObj) {
+        
+                    this.state.users.push(argObj);
+        
+                    this.setState({users:this.state.users});
+                    
+                }
+            
+            
+                render() {
+            
+                    const list = this.state.users.map((elem,i) => 
+            
+                    <Table 
+                                key={i} 
+                                name={elem.name} 
+                                price={elem.price} 
+                                count={elem.count}
+                                index={i}
+                                deleteUser={this.deleteUser.bind(this)}
+                            />  
+            
+                    );
+        
+                    const addNew = <AddInTable 
+                                addInTable={this.addInTable.bind(this)}
+                            /> ; 
+
+
+                            let arr = 0;
+                            const add =  this.state.users.map((elem,i) => {
+
+                            arr += elem.price * elem.count
+                            
+                            }
+                            );
+
+                            const sum = <Sum 
+                                obj={arr}
+                            /> ; 
+            
+                    return (
+                        
+                        <div>
+                            <table><tbody>{list}</tbody></table>
+                            <br />
+                            {sum}
+                            <br />
+                            {addNew}
+                        </div>
+            
+                    );
+                }
+            }
+            
+            ReactDOM.render(
+                <App />, document.getElementById('content9')
+            );
+            
+            
+            </script>
+            <hr>
+        
+
+            <h3>Задание 10. Модифицируйте предыдущую задачу так, чтобы в таблице появилась еще 
+                одна колонка, в которой будут находиться чекбоксы. Изначально эти чекбоксы отмечены.
+                 Сделайте так, чтобы полная стоимость всех продуктов выводилась только для тех продуктов, 
+                 у которых чекбокс отмечен.
+                        
+                        </h3>
+                        
+                        <div id="content10"></div>
+                
+                        <script type="text/babel">
+                        
+                            class Table extends React.Component {
+                        
+                            constructor() {
+                        
+                            super();
+                        
+                            }
+                        
+                            render() {
+                                return (
+                                    <tr>
+                                        <td>{this.props.name}</td>
+                                        <td>{this.props.price}</td>
+                                        <td>{this.props.count}</td>
+                                        <td>{this.props.count * this.props.price}</td>
+                                        <td><input 
+                                            type="checkbox"
+                                            checked={this.props.check} 
+                                            onChange={this.props.handleCheckbox.bind(null, this.props.index)}
+                                            /></td>
+                                        <td><a onClick={this.props.deleteUser.bind(null, this.props.index)}>+++++</a> </td>
+                                    </tr>
+                                );
+                            }
+                            
+                        };
+                    
+                    
+                        class AddInTable extends React.Component {
+                        
+                        constructor() {
+                    
+                        super();
+                    
+                        this.state = {
+                                    users: {}
+                                };
+                    
+                        }
+                    
+                    
+                        addInObj1(event) {
+                    
+                            this.state.users.name = event.target.value;
+                    
+                            this.setState({users:this.state.users});
+                    
+                        }
+                        addInObj2(event) {
+                    
+                            this.state.users.price = +event.target.value;
+                    
+                            this.setState({users:this.state.users});
+                    
+                        }
+                        addInObj3(event) {
+                    
+                            this.state.users.count = +event.target.value;
+                    
+                            this.setState({users:this.state.users});
+                    
+                        }
+                    
+                    
+                        render() {
+                            return (
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td><input onChange={this.addInObj1.bind(this)} /></td>
+                                            <td><input onChange={this.addInObj2.bind(this)} /></td>
+                                            <td><input onChange={this.addInObj3.bind(this)} /></td>
+                                            <td><button onClick={this.props.addInTable.bind(null, this.state.users)}>+++++</button> </td>
+                                        </tr>
+                                    </tbody>
+                                </table> 
+                            );
+                        }
+                        
+                    };
+            
+            
+                    class Sum extends React.Component {
+                        
+                        constructor() {
+                    
+                            super();
+            
+                            this.state = {
+            
+                                        sum:[]
+                                    };
+            
+                           this.getSum();        
+                    
+                        }
+                    
+                        
+            
+                        getSum() {
+            
+                            // console.log(this.props.obj);
+                            
+            
+                        }
+                    
+                        render() {
+                            const y = this.props.obj;
+            
+                            return (
+                                <div>
+                                   {this.props.obj}
+                                </div>
+                            );
+                        }
+                        
+                    };
+                        
+                        
+                            class App extends React.Component {
+                        
+                            constructor() {
+                        
+                                super();
+                        
+                                this.state = {
+                                    users: [
+                                        {name:'ddddd', price:50, count:10, check: true},
+                                        {name:'aaaaaa', price:60, count:11, check: true},
+                                        {name:'ffffff', price:70, count:12, check: true},
+                                        {name:'hhhhhh', price:80, count:13, check: true}
+                        
+                                    ]
+                                };
+                        
+                            }
+                        
+                            deleteUser(argNum) {
+                        
+                                this.state.users.splice(argNum, 1);  
+                        
+                                this.setState({users:this.state.users});
+                        
+                            }
+                    
+                            addInTable(argObj) {
+                    
+                                this.state.users.push(argObj);
+                    
+                                this.setState({users:this.state.users});
+                                
+                            }
+
+                            handleCheckbox(argNum) {
+
+                                this.state.users[argNum].check = !this.state.users[argNum].check;
+
+                                this.setState({users:this.state.users});                                
+
+                            }
+                        
+                        
+                            render() {
+                        
+                                const list = this.state.users.map((elem,i) => 
+                        
+                                <Table 
+                                            key={i} 
+                                            name={elem.name} 
+                                            price={elem.price} 
+                                            count={elem.count}
+                                            index={i}
+                                            check={elem.check}
+                                            deleteUser={this.deleteUser.bind(this)}
+                                            handleCheckbox={this.handleCheckbox.bind(this)}
+                                        />  
+                        
+                                );
+                    
+                                const addNew = <AddInTable 
+                                            addInTable={this.addInTable.bind(this)}
+                                        /> ; 
+            
+            
+                                        let arr = 0;
+                                        const add =  this.state.users.map((elem,i) => {
+
+                                                if(elem.check) {
+
+                                                    arr += elem.price * elem.count;
+
+                                                }
+            
+                                            }
+                                        );
+            
+                                        const sum = <Sum 
+                                            obj={arr}
+                                        /> ; 
+                        
+                                return (
+                                    
+                                    <div>
+                                        <table><tbody>{list}</tbody></table>
+                                        <br />
+                                        {sum}
+                                        <br />
+                                        {addNew}
+                                    </div>
+                        
+                                );
+                            }
+                        }
+                        
+                        ReactDOM.render(
+                            <App />, document.getElementById('content10')
+                        );
+                        
+
+                        
+                        
+                        </script>
+                        <hr>
+                    
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+
+</html>
