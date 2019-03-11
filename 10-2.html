@@ -548,7 +548,23 @@ ReactDOM.render(
                         }
                     
                     
+                        addInObj1(event) {
+                    
+                            this.state.users.name = event.target.value;
+                    
+                            this.setState({users:this.state.users});
+                    
+                        }
+                        addInObj2(event) {
+                    
+                            this.state.users.price = +event.target.value;
+                    
+                            this.setState({users:this.state.users});
+                    
+                        }
 
+            
+   
                         
    
                         
