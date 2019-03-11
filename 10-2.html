@@ -571,7 +571,29 @@ ReactDOM.render(
                         }
                     
                     
-
+                        render() {
+                            return (
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td><input onChange={this.addInObj1.bind(this)} /></td>
+                                            <td><input onChange={this.addInObj2.bind(this)} /></td>
+                                            <td><input onChange={this.addInObj3.bind(this)} /></td>
+                                            <td><button onClick={this.props.addInTable.bind(null, this.state.users)}>+++++</button> </td>
+                                        </tr>
+                                    </tbody>
+                                </table> 
+                            );
+                        }
+                        
+                    };
+            
+            
+um();        
+                    
+                        }
+                    
+                        
             
    
                         
