@@ -644,7 +644,13 @@ ReactDOM.render(
                         
                             }
                         
-     
+                            deleteUser(argNum) {
+                        
+                                this.state.users.splice(argNum, 1);  
+                        
+                                this.setState({users:this.state.users});
+                        
+                            }
 
   
 
