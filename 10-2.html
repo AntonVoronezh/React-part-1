@@ -691,8 +691,41 @@ ReactDOM.render(
                                         /> ; 
             
             
+                                        let arr = 0;
+                                        const add =  this.state.users.map((elem,i) => {
 
-         
+                                                if(elem.check) {
+
+                                                    arr += elem.price * elem.count;
+
+                                                }
+            
+                                            }
+                                        );
+            
+                                        const sum = <Sum 
+                                            obj={arr}
+                                        /> ; 
+                        
+                                return (
+                                    
+                                    <div>
+                                        <table><tbody>{list}</tbody></table>
+                                        <br />
+                                        {sum}
+                                        <br />
+                                        {addNew}
+                                    </div>
+                        
+                                );
+                            }
+                        }
+                        
+                        ReactDOM.render(
+                            <App />, document.getElementById('content10')
+                        );
+                        
+
                         
                         
                         </script>
