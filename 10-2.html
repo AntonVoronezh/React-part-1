@@ -440,6 +440,22 @@ ReactDOM.render(
                     
                 }
             
+            
+                render() {
+            
+                    const list = this.state.users.map((elem,i) => 
+            
+                    <Table 
+                                key={i} 
+                                name={elem.name} 
+                                price={elem.price} 
+                                count={elem.count}
+                                index={i}
+                                deleteUser={this.deleteUser.bind(this)}
+                            />  
+            
+                    );
+
 
          
                         
