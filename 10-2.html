@@ -423,6 +423,23 @@ ReactDOM.render(
                     };
             
                 }
+            
+                deleteUser(argNum) {
+            
+                    this.state.users.splice(argNum, 1);  
+            
+                    this.setState({users:this.state.users});
+            
+                }
+        
+                addInTable(argObj) {
+        
+                    this.state.users.push(argObj);
+        
+                    this.setState({users:this.state.users});
+                    
+                }
+            
 
          
                         
