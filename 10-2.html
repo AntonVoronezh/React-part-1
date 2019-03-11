@@ -152,6 +152,60 @@ ReactDOM.render(
         }
         
     };
+
+
+    class AddInTable extends React.Component {
+    
+    constructor() {
+
+    super();
+
+    this.state = {
+                users: {}
+            };
+
+    }
+
+
+    addInObj1(event) {
+
+        this.state.users.name = event.target.value;
+
+        this.setState({users:this.state.users});
+
+    }
+    addInObj2(event) {
+
+        this.state.users.price = +event.target.value;
+
+        this.setState({users:this.state.users});
+
+    }
+    addInObj3(event) {
+
+        this.state.users.count = +event.target.value;
+
+        this.setState({users:this.state.users});
+
+    }
+
+
+    render() {
+        return (
+            <table>
+                <tbody>
+                    <tr>
+                        <td><input onChange={this.addInObj1.bind(this)} /></td>
+                        <td><input onChange={this.addInObj2.bind(this)} /></td>
+                        <td><input onChange={this.addInObj3.bind(this)} /></td>
+                        <td><button onClick={this.props.addInTable.bind(null, this.state.users)}>+++++</button> </td>
+                    </tr>
+                </tbody>
+            </table> 
+        );
+    }
+    
+};
     
     
         class App extends React.Component {
@@ -179,6 +233,14 @@ ReactDOM.render(
             this.setState({users:this.state.users});
     
         }
+
+        addInTable(argObj) {
+
+            this.state.users.push(argObj);
+
+            this.setState({users:this.state.users});
+            
+        }
     
     
         render() {
@@ -195,11 +257,17 @@ ReactDOM.render(
                     />  
     
             );
+
+            const addNew = <AddInTable 
+                        addInTable={this.addInTable.bind(this)}
+                    />  
     
             return (
                 
                 <div>
                     <table><tbody>{list}</tbody></table>
+                    <br />
+                    {addNew}
                 </div>
     
             );
@@ -213,6 +281,106 @@ ReactDOM.render(
     
     </script>
     <hr>
+
+
+    <h3>Задание 9. Модифицируйте предыдущую задачу так, чтобы под таблицей появился еще 
+        и один отдельный компонент, в котором будет выведена полная стоимость всех продуктов.
+            
+            </h3>
+            
+            <div id="content9"></div>
+    
+            <script type="text/babel">
+            
+                class Table extends React.Component {
+            
+                constructor() {
+            
+                super();
+            
+                }
+            
+                render() {
+                    return (
+                        <tr>
+                            <td>{this.props.name}</td>
+                            <td>{this.props.price}</td>
+                            <td>{this.props.count}</td>
+                            <td>{this.props.count * this.props.price}</td>
+                            <td><a onClick={this.props.deleteUser.bind(null, this.props.index)}>+++++</a> </td>
+                        </tr>
+                    );
+                }
+                
+            };
+        
+        
+            class AddInTable extends React.Component {
+            
+            constructor() {
+        
+            super();
+        
+            this.state = {
+                        users: {}
+                    };
+        
+            }
+        
+        
+            addInObj1(event) {
+        
+                this.state.users.name = event.target.value;
+        
+                this.setState({users:this.state.users});
+        
+            }
+            addInObj2(event) {
+        
+                this.state.users.price = +event.target.value;
+        
+                this.setState({users:this.state.users});
+        
+            }
+            addInObj3(event) {
+        
+                this.state.users.count = +event.target.value;
+        
+                this.setState({users:this.state.users});
+        
+            }
+        
+        
+            render() {
+                return (
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><input onChange={this.addInObj1.bind(this)} /></td>
+                                <td><input onChange={this.addInObj2.bind(this)} /></td>
+                                <td><input onChange={this.addInObj3.bind(this)} /></td>
+                                <td><button onClick={this.props.addInTable.bind(null, this.state.users)}>+++++</button> </td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                );
+            }
+            
+        };
+
+
+
+            
+
+
+
+
+         
+                        
+                        
+                        </script>
+                        <hr>
+                    
 
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
