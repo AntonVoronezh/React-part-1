@@ -455,7 +455,26 @@ ReactDOM.render(
                             />  
             
                     );
+        
+                    const addNew = <AddInTable 
+                                addInTable={this.addInTable.bind(this)}
+                            /> ; 
 
+
+                            let arr = 0;
+                            const add =  this.state.users.map((elem,i) => {
+
+                            arr += elem.price * elem.count
+                            
+                            }
+                            );
+
+                            const sum = <Sum 
+                                obj={arr}
+                            /> ; 
+            
+
+  
 
          
                         
