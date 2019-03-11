@@ -673,7 +673,19 @@ ReactDOM.render(
                         
                                 const list = this.state.users.map((elem,i) => 
                         
-
+                                <Table 
+                                            key={i} 
+                                            name={elem.name} 
+                                            price={elem.price} 
+                                            count={elem.count}
+                                            index={i}
+                                            check={elem.check}
+                                            deleteUser={this.deleteUser.bind(this)}
+                                            handleCheckbox={this.handleCheckbox.bind(this)}
+                                        />  
+                        
+    
+            
 
          
                         
